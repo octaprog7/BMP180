@@ -11,3 +11,11 @@ Supply voltage BMP180 3.3 Volts! Not 5 volts! Use four wires to connect.
 
 Upload micropython firmware to the NANO(ESP, etc) board, and then two files: main.py and bmp180.py. 
 Then open main.py in your IDE and run it.
+
+# Picturies
+
+## IDE
+![alt text](https://github.com/octaprog7/BMP180/blob/master/ide_180.jpg)
+## Breadboard
+![alt text](https://github.com/octaprog7/BMP180/blob/master/breadboard_180.jpg)
+
