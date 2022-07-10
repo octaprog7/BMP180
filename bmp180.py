@@ -1,6 +1,7 @@
 # micropython
-# mail: goctaprog@gmail.com
 # MIT license
+# Copyright (c) 2022 Roman Shevchik   goctaprog@gmail.com
+
 import ustruct
 import array
 
