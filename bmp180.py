@@ -8,9 +8,10 @@ import array
 # WARNING: do not connect "+" to 5V or the sensor will be damaged!
 
 
-def _check_oss(oss_val: int):
+def _check_oss(oss_val: int) -> int:
     if not 0 <= oss_val <= 3:
         raise ValueError(f"Invalid oversample settings: {oss_val}")
+    return oss_val
 
 
 def _calibration_regs_addr() -> iter:
@@ -36,10 +37,9 @@ class Bmp180:
         self.tmp1 = None
         self.tmp0 = None
         self.B5 = None   # for precalculate
-        _check_oss(oversample_settings)
+        self.oss = _check_oss(oversample_settings)
         self.adr = address
         self.i2c = i2c
-        self.oss = oversample_settings
         self.base_pressure = baseline_pressure
         # массив, хранящий калибровочные коэффициенты (11 штук)
         self.cfa = array.array("l")  # signed long elements
