@@ -1,6 +1,4 @@
 # micropython
-# mail: goctaprog@gmail.com
-# MIT license
 
 # ВНИМАНИЕ: не подключайте питание датчика к 5В, иначе датчик выйдет из строя! Только 3.3В!!!
 # WARNING: do not connect "+" to 5V or the sensor will be damaged!
