@@ -1,7 +1,7 @@
 # micropython
 # MIT license
 # Copyright (c) 2022 Roman Shevchik   goctaprog@gmail.com
-
+import micropython
 import ustruct
 import array
 
@@ -9,6 +9,7 @@ import array
 # WARNING: do not connect "+" to 5V or the sensor will be damaged!
 
 
+@micropython.native
 def _check_oss(oss_val: int) -> int:
     if not 0 <= oss_val <= 3:
         raise ValueError(f"Invalid oversample settings: {oss_val}")
@@ -49,6 +50,7 @@ class Bmp180:
         # предварительный расчет
         self.precalculate()
 
+    @micropython.native
     def get_calibration_data(self, index: int) -> int:
         """возвращает калибровочный коэффициент по его индексу (0..10).
         returns the calibration coefficient by its index (0..10)"""
@@ -56,6 +58,7 @@ class Bmp180:
             raise ValueError(f"Invalid index value: {index}")
         return self.cfa[index]
 
+    @micropython.native
     def precalculate(self):
         """предварительно вычисленные значения"""
         # для расчета температуры
@@ -105,6 +108,7 @@ class Bmp180:
         software reset of the sensor"""
         self._write_register(0xE0, 0xB6, 1)
 
+    @micropython.native
     def start_measurement(self, temperature_or_pressure: bool = True):
         """Start measurement process in sensor.
         Если temperature_or_pressure==Истина тогда будет выполнен запуск измерения температуры иначе давления!
@@ -127,6 +131,7 @@ class Bmp180:
         val = loc_oss << 6 | start_conversion | bit_4_0
         self._write_register(0xF4, val, 1)
 
+    @micropython.native
     def get_temperature(self) -> float:
         """возвращает значение температуры, измеренное датчиком в Цельсиях.
         returns the temperature value measured by the sensor in Celsius"""
@@ -137,6 +142,7 @@ class Bmp180:
         self.B5 = a + b  #
         return 6.25E-3 * (a + b + 8)
 
+    @micropython.native
     def get_pressure(self) -> float:
         """возвращает значение давления, измеренное датчиком в Паскалях (Pa).
         До вызова этого метода нужно вызвать хотя-бы один раз метод get_temperature.
