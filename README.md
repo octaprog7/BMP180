@@ -1,5 +1,5 @@
 # BMP180
-Micropython module for BMP180 pressure&amp temperature sensor.
+Micropython module for BMP180 pressure&temperature sensor.
 
 Just connect your BMP180 board to Arduino, ESP or any other board with MicroPython firmware.
 
