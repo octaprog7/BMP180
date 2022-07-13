@@ -157,7 +157,7 @@ class Bmp180:
         get_pressure"""
         raw = self._read_register(0xF6, 3)  # считывание сырого значения (три байта)
         msb, lsb, xlsb = raw
-        uncompensated = ((msb << 16)+(lsb << 8)) >> (8-self.oss)
+        uncompensated = ((msb << 16)+(lsb << 8)+xlsb) >> (8-self.oss)
         b6 = self.B5-4000
         x1 = self.press0 * b6 ** 2  #
         x2 = self.press1 * b6
