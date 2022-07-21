@@ -5,6 +5,10 @@ import micropython
 import ustruct
 import array
 
+from sensor_pack import bus_service
+from sensor_pack.base_sensor import BaseSensor, Iterator
+
+
 # ВНИМАНИЕ: не подключайте питание датчика к 5В, иначе датчик выйдет из строя! Только 3.3В!!!
 # WARNING: do not connect "+" to 5V or the sensor will be damaged!
 
@@ -21,16 +25,19 @@ def _calibration_regs_addr() -> iter:
     return range(0xAA, 0xBF, 2)
 
 
-class Bmp180:
+class Bmp180(BaseSensor, Iterator):
     """Class for work with Bosh BMP180 pressure sensor"""
 
-    def __init__(self, i2c, baseline_pressure=101325.0, oversample_settings=0b11, address=0xEE >> 1):
-        """i2c - объект класса I2C; baseline_pressure - давление на уровне моря в Pa в твоей(!) местности;;
-        oversample_settings (0..3) - точность измерения 0-грубо но быстро, 3-медленно, но точно;
-        address - адрес датчика (0xEF (read) and 0xEE (write) from datasheet)
+    def __init__(self, adapter: bus_service.I2cAdapter, address: int = 0xEE >> 1, oversample_settings=0b11):
+        """i2c - объект класса I2C; oversample_settings (0..3) - точность измерения 0-грубо но быстро,
+        3-медленно, но точно; address - адрес датчика (0xEF (read) and 0xEE (write) from datasheet)
 
-        i2c is an object of the I2C class; baseline_pressure - sea level pressure in Pa in your(!) area;
-        oversample_settings (0..3) - measurement reliability 0-coarse but fast, 3-slow but accurate;"""
+        i2c is an object of the I2C class; oversample_settings (0..3) - measurement
+        reliability 0-coarse but fast, 3-slow but accurate;"""
+        super().__init__(adapter, address)
+        # self.adapter = adapter
+        #
+        self.temp_or_press = True
         self.press4 = None  # for precalculate
         self.press3 = None
         self.press2 = None
@@ -41,8 +48,7 @@ class Bmp180:
         self.B5 = None   # for precalculate
         self.oss = _check_oss(oversample_settings)
         self.adr = address
-        self.i2c = i2c
-        self.base_pressure = baseline_pressure
+        # self.i2c = i2c
         # массив, хранящий калибровочные коэффициенты (11 штук)
         self.cfa = array.array("l")  # signed long elements
         # считываю калибровочные коэффициенты
@@ -71,17 +77,6 @@ class Bmp180:
         self.press3 = self.get_calibration_data(6) / 2 ** 28
         self.press4 = abs(self.get_calibration_data(3)) / 2 ** 15
 
-    def _read_register(self, reg_addr, bytes_count=2) -> bytes:
-        """считывает из регистра датчика значение.
-        bytes_count - размер значения в байтах"""
-        return self.i2c.readfrom_mem(self.adr, reg_addr, bytes_count)
-
-    def _write_register(self, reg_addr, value: int, bytes_count=2) -> int:
-        """записывает данные value в датчик, по адресу reg_addr.
-        bytes_count - кол-во записываемых данных"""
-        buf = value.to_bytes(bytes_count, "big")
-        return self.i2c.writeto_mem(self.adr, reg_addr, buf)
-
     def _read_calibration_data(self) -> int:
         """Читает калибровочные значение из датчика.
         read calibration values from sensor.
@@ -89,7 +84,8 @@ class Bmp180:
         if len(self.cfa):
             raise ValueError(f"calibration data array already filled!")
         for index, addr in enumerate(_calibration_regs_addr()):
-            reg_val = self._read_register(addr, 2)
+            reg_val = self.adapter.read_register(self.address, addr, 2)     # _read_register(addr, 2)
+            # reg_val = self._read_register(addr, 2)
             rv = ustruct.unpack(">H" if 2 < index < 6 else ">h", reg_val)[0]
             # check
             if rv == 0x00 or rv == 0xFFFF:
@@ -97,16 +93,17 @@ class Bmp180:
             self.cfa.append(rv)
         return len(self.cfa)
 
-    def get_chip_id(self) -> int:
+    def get_id(self) -> int:
         """Возвращает идентификатор датчика. Правильное значение - 0х55.
         Returns the ID of the sensor. The correct value is 0x55."""
-        res = self._read_register(0xD0, 1)
+        res = self.adapter.read_register(self.address, 0xD0, 1)     # self._read_register(0xD0, 1)
         return int(res[0])
 
     def soft_reset(self):
         """программный сброс датчика.
         software reset of the sensor"""
-        self._write_register(0xE0, 0xB6, 1)
+        # self._write_register(0xE0, 0xB6, 1)
+        self.adapter.write_register(self.address, 0xE0, 0xB6, 1)
 
     @micropython.native
     def start_measurement(self, temperature_or_pressure: bool = True):
@@ -122,6 +119,7 @@ class Bmp180:
 
         Внимание! Глупо ждать результата методом time.delay_ms(value)!
         Вместо этого можно занять процессор полезным делом!"""
+        self.temp_or_press = temperature_or_pressure
         loc_oss = self.oss
         start_conversion = 0b00100000   # bit 5 - запуск преобразования (1)
         bit_4_0 = 0x14  # давление
@@ -129,13 +127,15 @@ class Bmp180:
             bit_4_0 = 0x0E  # температура
             loc_oss = 0  # обнуляю OSS при температуре
         val = loc_oss << 6 | start_conversion | bit_4_0
-        self._write_register(0xF4, val, 1)
+        # self._write_register(0xF4, val, 1)
+        self.adapter.write_register(self.address, 0xF4, val, 1)
 
     @micropython.native
     def get_temperature(self) -> float:
         """возвращает значение температуры, измеренное датчиком в Цельсиях.
         returns the temperature value measured by the sensor in Celsius"""
-        raw = self._read_register(0xF6, 2)  # считывание сырого значения
+        # raw = self._read_register(0xF6, 2)  # считывание сырого значения
+        raw = self.adapter.read_register(self.address, 0xF6, 2)
         temp = ustruct.unpack(">H", raw)[0]  # unsigned short
         a = self.tmp0 * (temp - self.get_calibration_data(5))
         b = self.tmp1 / (a + self.get_calibration_data(10))
@@ -155,7 +155,8 @@ class Bmp180:
         Better call the method in pairs:
         get_temperature
         get_pressure"""
-        raw = self._read_register(0xF6, 3)  # считывание сырого значения (три байта)
+        # raw = self._read_register(0xF6, 3)  # считывание сырого значения (три байта)
+        raw = self.adapter.read_register(self.address, 0xF6, 3)
         msb, lsb, xlsb = raw
         uncompensated = ((msb << 16)+(lsb << 8)+xlsb) >> (8-self.oss)
         b6 = self.B5-4000
@@ -176,3 +177,11 @@ class Bmp180:
         x2 = -0.1122589111328125 * curr_pressure
 
         return curr_pressure + 6.25E-2 * (x1 + x2 + 3791)
+
+    """Call start_measurement(...) before call __next__ !!!"""
+    def __next__(self):
+        """For support iterating.
+        Return current temperature or pressure"""
+        if self.temp_or_press:
+            return self.get_temperature()
+        return self.get_pressure()
