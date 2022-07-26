@@ -2,7 +2,7 @@
 
 # ВНИМАНИЕ: не подключайте питание датчика к 5В, иначе датчик выйдет из строя! Только 3.3В!!!
 # WARNING: do not connect "+" to 5V or the sensor will be damaged!
-from machine import I2C, Pin
+from machine import I2C
 import bmp180
 import time
 from sensor_pack.bus_service import I2cAdapter
@@ -38,3 +38,4 @@ if __name__ == '__main__':
         time.sleep_ms(300)  # delay for pressure measurement
         ps.start_measurement(False)
         print(f"Pressure from BMP180: {press} Pa")
+        break

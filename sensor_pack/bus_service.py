@@ -2,13 +2,13 @@
 # MIT license
 # Copyright (c) 2022 Roman Shevchik   goctaprog@gmail.com
 """service class for I/O bus operation"""
-
-from machine import I2C
+from machine import I2C, SPI, Pin
+from typing import Union
 
 
 class BusAdapter:
     """Proxy between I/O bus and device I/O class"""
-    def __init__(self, bus):
+    def __init__(self, bus: Union[I2C, SPI]):
         self.bus = bus
 
     def read_register(self, device_addr: int, reg_addr: int, bytes_count: int = 2):

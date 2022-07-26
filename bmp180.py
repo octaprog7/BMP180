@@ -39,13 +39,13 @@ class Bmp180(BaseSensor, Iterator):
         #
         self.temp_or_press = True
         self.press4 = None  # for precalculate
-        self.press3 = None
-        self.press2 = None
-        self.press1 = None
-        self.press0 = None
-        self.tmp1 = None
-        self.tmp0 = None
-        self.B5 = None   # for precalculate
+        self.press3 = None  # for precalculate
+        self.press2 = None  # for precalculate
+        self.press1 = None  # for precalculate
+        self.press0 = None  # for precalculate
+        self.tmp1 = None    # for precalculate
+        self.tmp0 = None    # for precalculate
+        self.B5 = None      # for precalculate
         self.oss = _check_oss(oversample_settings)
         self.adr = address
         # self.i2c = i2c
