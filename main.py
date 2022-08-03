@@ -7,9 +7,11 @@ import bmp180
 import time
 from sensor_pack.bus_service import I2cAdapter
 
-def pa_mmhg(value: float)->float:
+
+def pa_mmhg(value: float) -> float:
     """Convert air pressure from Pa to mm Hg"""
     return value*7.50062E-3
+
 
 if __name__ == '__main__':
     # пожалуйста установите выводы scl и sda в конструкторе для вашей платы, иначе ничего не заработает!
@@ -43,6 +45,6 @@ if __name__ == '__main__':
         time.sleep_ms(300)  # delay for pressure measurement
         ps.start_measurement(False)
         print(f"Pressure from BMP180: {press} Pa\t{pa_mmhg(press)} mm hg")
-        count-=1
+        count -= 1
         if not count:
             break
