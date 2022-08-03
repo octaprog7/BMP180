@@ -1,4 +1,4 @@
-import bus_service
+from sensor_pack import bus_service
 
 
 class BaseSensor:
