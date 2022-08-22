@@ -35,16 +35,16 @@ if __name__ == '__main__':
 
     for i in range(10):
         ps.start_measurement()
-        time.sleep_ms(150)    # delay for temperature measurement
-        print(f"Temperature from BMP180: {ps.get_temperature()} \xB0 С")
+        delay = bmp180.get_conversion_cycle_time(ps.temp_or_press, ps.oss)
+        time.sleep_ms(delay)    # delay for temperature measurement
+        print(f"Temperature from BMP180: {ps.get_temperature()} \xB0 С\tDelay: {delay} [ms]")
 
-    count = 10
     ps.start_measurement(False)
-    time.sleep_ms(1000)  # delay for pressure measurement
-    for press in ps:
-        time.sleep_ms(300)  # delay for pressure measurement
+    delay = bmp180.get_conversion_cycle_time(ps.temp_or_press, ps.oss)
+    time.sleep_ms(delay)  # delay for pressure measurement
+    for index, press in enumerate(ps):
+        time.sleep_ms(delay)  # delay for pressure measurement
         ps.start_measurement(False)
-        print(f"Pressure from BMP180: {press} Pa\t{pa_mmhg(press)} mm hg")
-        count -= 1
-        if not count:
+        print(f"Pressure from BMP180: {press} Pa\t{pa_mmhg(press)} mm hg\tDelay: {delay} [ms]")
+        if index > 9:
             break
