@@ -16,7 +16,18 @@ from sensor_pack.base_sensor import BaseSensor, Iterator
 def _check_oss(oss_val: int) -> int:
     if not 0 <= oss_val <= 3:
         raise ValueError(f"Invalid oversample settings: {oss_val}")
+
     return oss_val
+
+
+@micropython.native
+def get_conversion_cycle_time(temperature_or_pressure: bool, oversample_settings: int) -> int:
+    """возвращает время преобразования в [мс] датчиком температуры или давления в зависимости от его настроек"""
+    delays_ms = 5, 8, 14, 26
+    if temperature_or_pressure:
+        return delays_ms[0]    # temperature
+    # pressure
+    return delays_ms[oversample_settings]
 
 
 def _calibration_regs_addr() -> iter:
@@ -101,13 +112,12 @@ class Bmp180(BaseSensor, Iterator):
     def get_id(self) -> int:
         """Возвращает идентификатор датчика. Правильное значение - 0х55.
         Returns the ID of the sensor. The correct value is 0x55."""
-        res = self.adapter.read_register(self.address, 0xD0, 1)     # self._read_register(0xD0, 1)
+        res = self.adapter.read_register(self.address, 0xD0, 1)
         return int(res[0])
 
     def soft_reset(self):
         """программный сброс датчика.
         software reset of the sensor"""
-        # self._write_register(0xE0, 0xB6, 1)
         self._write_register(0xE0, 0xB6, 1)
 
     @micropython.native
