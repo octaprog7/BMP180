@@ -2,7 +2,6 @@
 # MIT license
 # Copyright (c) 2022 Roman Shevchik   goctaprog@gmail.com
 import micropython
-import ustruct
 import array
 
 from sensor_pack import bus_service
@@ -34,7 +33,7 @@ class Bmp180(BaseSensor, Iterator):
 
         i2c is an object of the I2C class; oversample_settings (0..3) - measurement
         reliability 0-coarse but fast, 3-slow but accurate;"""
-        super().__init__(adapter, address)
+        super().__init__(adapter, address, True)
         # self.adapter = adapter
         #
         self.temp_or_press = True
@@ -55,6 +54,12 @@ class Bmp180(BaseSensor, Iterator):
         self._read_calibration_data()
         # предварительный расчет
         self.precalculate()
+
+    def _write_register(self, reg_addr, value: int, bytes_count=2) -> int:
+        """записывает данные value в датчик, по адресу reg_addr.
+        bytes_count - кол-во записываемых данных"""
+        byte_order = self._get_byteorder_as_str()[0]
+        return self.adapter.write_register(self.address, reg_addr, value, bytes_count, byte_order)
 
     @micropython.native
     def get_calibration_data(self, index: int) -> int:
@@ -86,7 +91,7 @@ class Bmp180(BaseSensor, Iterator):
         for index, addr in enumerate(_calibration_regs_addr()):
             reg_val = self.adapter.read_register(self.address, addr, 2)     # _read_register(addr, 2)
             # reg_val = self._read_register(addr, 2)
-            rv = ustruct.unpack(">H" if 2 < index < 6 else ">h", reg_val)[0]
+            rv = self.unpack("H" if 2 < index < 6 else "h", reg_val)[0]
             # check
             if rv == 0x00 or rv == 0xFFFF:
                 raise ValueError(f"Invalid register addr: {addr} value: {hex(rv)}")
@@ -103,7 +108,7 @@ class Bmp180(BaseSensor, Iterator):
         """программный сброс датчика.
         software reset of the sensor"""
         # self._write_register(0xE0, 0xB6, 1)
-        self.adapter.write_register(self.address, 0xE0, 0xB6, 1)
+        self._write_register(0xE0, 0xB6, 1)
 
     @micropython.native
     def start_measurement(self, temperature_or_pressure: bool = True):
@@ -128,7 +133,7 @@ class Bmp180(BaseSensor, Iterator):
             loc_oss = 0  # обнуляю OSS при температуре
         val = loc_oss << 6 | start_conversion | bit_4_0
         # self._write_register(0xF4, val, 1)
-        self.adapter.write_register(self.address, 0xF4, val, 1)
+        self._write_register(0xF4, val, 1)
 
     @micropython.native
     def get_temperature(self) -> float:
@@ -136,7 +141,7 @@ class Bmp180(BaseSensor, Iterator):
         returns the temperature value measured by the sensor in Celsius"""
         # raw = self._read_register(0xF6, 2)  # считывание сырого значения
         raw = self.adapter.read_register(self.address, 0xF6, 2)
-        temp = ustruct.unpack(">H", raw)[0]  # unsigned short
+        temp = self.unpack("H", raw)[0]  # unsigned short
         a = self.tmp0 * (temp - self.get_calibration_data(5))
         b = self.tmp1 / (a + self.get_calibration_data(10))
         self.B5 = a + b  #
