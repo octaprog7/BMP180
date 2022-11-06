@@ -51,5 +51,5 @@ if __name__ == '__main__':
     print("Reading pressure using an iterator!")
     for index, press in enumerate(ps):
         time.sleep_ms(delay)  # delay for pressure measurement
-        ps.start_measurement(False)
+        ps.start_measurement(temperature_or_pressure=False)
         print(f"Pressure from BMP180: {press} Pa\t{pa_mmhg(press)} mm Hg\tDelay: {delay} [ms]")
