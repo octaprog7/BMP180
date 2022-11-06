@@ -40,7 +40,7 @@ class Device:
     def unpack(self, fmt_char: str, source: bytes, redefine_byte_order: str = None) -> tuple:
         """распаковка массива, считанного из датчика.
         Если redefine_byte_order != None, то bo (смотри ниже) = redefine_byte_order
-        fmt_char: c, b, B, h, H, i, I, l, L, q, Q. pls see: https://docs.python.org/3/library/struct.html"""
+        fmt_char: c, B, b, h, H, i, I, l, L, q, Q. pls see: https://docs.python.org/3/library/struct.html"""
         if not fmt_char:
             raise ValueError(f"Invalid length fmt_char parameter: {len(fmt_char)}")
         bo = self._get_byteorder_as_str()[1]
