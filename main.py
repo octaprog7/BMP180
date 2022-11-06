@@ -17,34 +17,39 @@ if __name__ == '__main__':
     # пожалуйста установите выводы scl и sda в конструкторе для вашей платы, иначе ничего не заработает!
     # please set scl and sda pins for your board, otherwise nothing will work!
     # https://docs.micropython.org/en/latest/library/machine.I2C.html#machine-i2c
-    # i2c = I2C(0, scl=Pin(13), sda=Pin(12), freq=400_000) № для примера
+    # i2c = I2C(0, scl=Pin(13), sda=Pin(12), freq=400_000) # для примера
     # bus =  I2C(scl=Pin(4), sda=Pin(5), freq=100000)   # на esp8266    !
-    adaptor = I2cAdapter(I2C(0, freq=400_000))
+    # Внимание!!!
+    # Замените id=1 на id=0, если пользуетесь первым портом I2C !!!
+    # Warning!!!
+    # Replace id=1 with id=0 if you are using the first I2C port !!!
+    adaptor = I2cAdapter(I2C(1, freq=400_000))
     # ps - pressure sensor
     ps = bmp180.Bmp180(adaptor)
 
-    # если у вас посыпались исключения, чего у меня на макетной плате с али и проводами МГТВ не наблюдается,
-    # то проверьте все соединения.
-    # Радиотехника - наука о контактах! РТФ-Чемпион!
+    # если у вас посыпались исключения EIO, то проверьте все соединения.
+    # if you have EIO exceptions, then check all connections.
     res = ps.get_id()
     print(f"chip_id: {hex(res)}")
 
-    cdl = [ps.get_calibration_data(i) for i in range(11)]
     print("Calibration data from registers:")
-    print(cdl)
+    print([ps.get_calibration_data(i) for i in range(11)])
 
-    for i in range(10):
-        ps.start_measurement()
-        delay = bmp180.get_conversion_cycle_time(ps.temp_or_press, ps.oss)
+    print(20 * "*_")
+    print("Reading temperature in a cycle.")
+    for i in range(333):
+        ps.start_measurement(temperature_or_pressure=True)  # switch to temperature
+        delay = bmp180.get_conversion_cycle_time(ps.temp_or_press, ps.oversample)
         time.sleep_ms(delay)    # delay for temperature measurement
         print(f"Temperature from BMP180: {ps.get_temperature()} \xB0 С\tDelay: {delay} [ms]")
 
-    ps.start_measurement(False)
-    delay = bmp180.get_conversion_cycle_time(ps.temp_or_press, ps.oss)
+    ps.start_measurement(temperature_or_pressure=False)     # switch to pressure
+    delay = bmp180.get_conversion_cycle_time(ps.temp_or_press, ps.oversample)
     time.sleep_ms(delay)  # delay for pressure measurement
+
+    print(20 * "*_")
+    print("Reading pressure using an iterator!")
     for index, press in enumerate(ps):
         time.sleep_ms(delay)  # delay for pressure measurement
         ps.start_measurement(False)
-        print(f"Pressure from BMP180: {press} Pa\t{pa_mmhg(press)} mm hg\tDelay: {delay} [ms]")
-        if index > 9:
-            break
+        print(f"Pressure from BMP180: {press} Pa\t{pa_mmhg(press)} mm Hg\tDelay: {delay} [ms]")
