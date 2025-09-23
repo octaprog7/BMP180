@@ -5,12 +5,14 @@
 from machine import I2C
 import bmp180
 import time
-from sensor_pack.bus_service import I2cAdapter
+from sensor_pack_2.bus_service import I2cAdapter
 
-
-def pa_mmhg(value: float) -> float:
+# fromPaToMmHg
+def fromPaToMmHg(value: float) -> float:
     """Convert air pressure from Pa to mm Hg"""
-    return value*7.50062E-3
+    if isinstance(value, float):
+        return value*7.50062E-3
+    return None
 
 
 if __name__ == '__main__':
@@ -30,26 +32,33 @@ if __name__ == '__main__':
     # если у вас посыпались исключения EIO, то проверьте все соединения.
     # if you have EIO exceptions, then check all connections.
     res = ps.get_id()
-    print(f"chip_id: {hex(res)}")
+    print(f"chip_id: 0x{res:x}")
 
-    print("Calibration data from registers:")
+    print("Calibration data:")
     print([ps.get_calibration_data(i) for i in range(11)])
 
     print(20 * "*_")
     print("Reading temperature in a cycle.")
     for i in range(333):
-        ps.start_measurement(temperature_or_pressure=True)  # switch to temperature
-        delay = bmp180.get_conversion_cycle_time(ps.temp_or_press, ps.oversample)
+        ps.start_measurement(measure_temperature=True)  # switch to temperature
+        delay = ps.get_conversion_cycle_time()
         time.sleep_ms(delay)    # delay for temperature measurement
-        print(f"Temperature from BMP180: {ps.get_temperature()} \xB0 С\tDelay: {delay} [ms]")
+        print(f"Air temperature: {ps.get_temperature()} \xB0 С\tDelay: {delay} [ms]")
 
-    ps.start_measurement(temperature_or_pressure=False)     # switch to pressure
-    delay = bmp180.get_conversion_cycle_time(ps.temp_or_press, ps.oversample)
+    ps.start_measurement(measure_temperature=False)     # switch to pressure
+    delay = ps.get_conversion_cycle_time()
     time.sleep_ms(delay)  # delay for pressure measurement
 
+    min_press, max_press, average_press = 1E6, 0.0, 0.0
     print(20 * "*_")
     print("Reading pressure using an iterator!")
     for index, press in enumerate(ps):
+        if press is None:
+            continue
         time.sleep_ms(delay)  # delay for pressure measurement
-        ps.start_measurement(temperature_or_pressure=False)
-        print(f"Pressure from BMP180: {press} Pa\t{pa_mmhg(press)} mm Hg\tDelay: {delay} [ms]")
+        ps.start_measurement(measure_temperature=False)
+        min_press = min(press, min_press)
+        max_press = max(press, max_press)
+        average_press = 0.5 * (min_press + max_press)
+        # print(f"Air pressure: {press} Pa\t{fromPaToMmHg(press)} mm Hg\tDelay: {delay} [ms]")
+        print(f"Air pressure min max average [Pa]: {min_press}\t{max_press}\t{average_press}")
