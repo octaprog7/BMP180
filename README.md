@@ -15,7 +15,10 @@ Then open main.py in your IDE and run it.
 # Pictures
 
 ## IDE
-![alt text](https://github.com/octaprog7/BMP180/blob/master/ide_180.png)
+
+![alt text](https://github.com/octaprog7/BMP180/blob/master/pics/ide_180.png)
+
 ## Breadboard
-![alt text](https://github.com/octaprog7/BMP180/blob/master/breadboard_180.jpg)
+
+![alt text](https://github.com/octaprog7/BMP180/blob/master/pics/breadboard_180.jpg)
 
