@@ -11,7 +11,7 @@ from sensor_pack_2.bus_service import I2cAdapter
 def fromPaToMmHg(value: float) -> float:
     """Convert air pressure from Pa to mm Hg"""
     if isinstance(value, float):
-        return value*7.50062E-3
+        return 7.50062E-3 * value
     return None
 
 
@@ -61,4 +61,5 @@ if __name__ == '__main__':
         max_press = max(press, max_press)
         average_press = 0.5 * (min_press + max_press)
         # print(f"Air pressure: {press} Pa\t{fromPaToMmHg(press)} mm Hg\tDelay: {delay} [ms]")
-        print(f"Air pressure min max average [Pa]: {min_press}\t{max_press}\t{average_press}")
+        mmhg = fromPaToMmHg(average_press)
+        print(f"Air pressure min max average [Pa]: {min_press} {max_press} {average_press}/{mmhg} Pa/mmHg")
