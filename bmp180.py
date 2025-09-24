@@ -2,6 +2,7 @@
 # MIT license
 # Copyright (c) 2022 Roman Shevchik   goctaprog@gmail.com
 import micropython
+from micropython import const
 import array
 
 from sensor_pack_2 import bus_service
@@ -18,6 +19,13 @@ def _calibration_regs_addr() -> iter:
 
 class Bmp180(IBaseSensorEx, IDentifier, Iterator):
     """Класс для работы с датчиком давления воздуха Bosch BMP180"""
+
+    # Регистры BMP180
+    REG_ID = const(0xD0)
+    REG_SOFT_RESET = const(0xE0)
+    REG_CTRL = const(0xF4)
+    REG_OUT_MSB = const(0xF6)
+
 
     def __init__(self, adapter: bus_service.I2cAdapter, address: int = 0x77, oss=0b11):
         """i2c - объект класса I2C; oss (oversample_settings) (0..3) - точность измерения 0-грубо, но быстро,
@@ -83,14 +91,14 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         """Возвращает идентификатор датчика. Правильное значение - 0х55.
         Returns the ID of the sensor. The correct value is 0x55."""
         conn = self._connection
-        res = conn.read_reg(0xD0, 1)
+        res = conn.read_reg(Bmp180.REG_ID, 1)
         return int(res[0])
 
     def soft_reset(self):
         """программный сброс датчика.
         software reset of the sensor"""
         conn = self._connection
-        conn.write_reg(0xE0, 0xB6, 1)
+        conn.write_reg(Bmp180.REG_SOFT_RESET, 0xB6, 1)
 
     @micropython.native
     def start_measurement(self, measure_temperature: bool = True):
@@ -110,14 +118,14 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
             bit_4_0 = 0x0E  # температура
             loc_oss = 0  # обнуляю OSS при температуре
         val = loc_oss << 6 | start_conversion | bit_4_0
-        self._connection.write_reg(0xF4, val, 1)
+        self._connection.write_reg(Bmp180.REG_CTRL, val, 1)
         self.set_temperature_measurement(measure_temperature)
 
     def _get_temp_raw(self) -> int:
         """Возвращает сырое значение температуры."""
         # считывание сырого значения
         conn = self._connection
-        raw = conn.read_reg(0xF6, 2)
+        raw = conn.read_reg(Bmp180.REG_OUT_MSB, 2)
         return conn.unpack("H", raw)[0]  # unsigned short
 
     @micropython.native
@@ -133,7 +141,7 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
     def _get_press_raw(self) -> int:
         """Возвращает сырое значение атмосферного давления."""
         # считывание сырого значения (три байта)
-        raw = self._connection.read_reg(0xF6, 3)
+        raw = self._connection.read_reg(Bmp180.REG_OUT_MSB, 3)
         msb, lsb, xlsb = raw
         oss = self.get_oversample()
         return ((msb << 16) + (lsb << 8) + xlsb) >> (8 - oss)
@@ -145,6 +153,9 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         Лучше вызывайте метод парами:
         get_temperature
         get_pressure"""
+        if self._B5 is None:
+            raise RuntimeError("Call get_temperature() before get_pressure()")
+        #
         oss = self.get_oversample()
         uncompensated = self._get_press_raw()
         b6 = self._B5-4000
@@ -225,10 +236,10 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         Тип возвращаемого значения выбирайте сами!
         Если raw Истина, то возвращается сырое/не обработанное значение состояния!
         Для определения готовности данных температуры или давления у датчика BMP180 нужно читать
-        бит SCO (Start of Conversion) в регистре управления измерениями 0xF4.
+        бит SCO (Start of Conversion) в регистре управления измерениями _REG_CTRL.
         Пока бит SCO равен 1 — преобразование в процессе.
         Когда SCO в 0 — преобразование завершено, данные готовы для чтения из регистров результата."""
-        raw_val = self._connection.read_reg(0xF4, 1)[0]
+        raw_val = self._connection.read_reg(Bmp180.REG_CTRL, 1)[0]
         if raw:
             return raw_val
         return 0 == (raw_val & 0b10_0000)
