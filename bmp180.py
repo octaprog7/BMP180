@@ -25,7 +25,8 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
     REG_SOFT_RESET = const(0xE0)
     REG_CTRL = const(0xF4)
     REG_OUT_MSB = const(0xF6)
-
+    PRESSURE_MEAS = const(0x14)
+    TEMPERATURE_MEAS = const(0x0E)
 
     def __init__(self, adapter: bus_service.I2cAdapter, address: int = 0x77, oss=0b11):
         """i2c - объект класса I2C; oss (oversample_settings) (0..3) - точность измерения 0-грубо, но быстро,
@@ -113,9 +114,9 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         3               26"""
         loc_oss = self.get_oversample()
         start_conversion = 0b0010_0000   # bit 5 - запуск преобразования (1)
-        bit_4_0 = 0x14  # давление
+        bit_4_0 = Bmp180.PRESSURE_MEAS  # измеряю давление
         if measure_temperature:
-            bit_4_0 = 0x0E  # температура
+            bit_4_0 = Bmp180.TEMPERATURE_MEAS  # измеряю температуру
             loc_oss = 0  # обнуляю OSS при температуре
         val = loc_oss << 6 | start_conversion | bit_4_0
         self._connection.write_reg(Bmp180.REG_CTRL, val, 1)
