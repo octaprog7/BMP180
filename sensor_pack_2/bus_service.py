@@ -79,7 +79,7 @@ class BusAdapter:
 
     def read_buf_from_memory(self, device_addr: int | Pin, mem_addr, buf, address_size: int):
         """Читает из устройства с адресом device_addr в буфер buf, начиная с адреса в устройстве mem_addr.
-        Количество считываемых байт определяется длинной буфера buf.
+        Количество считываемых байт определяется длиной буфера buf.
         address_size - определяет размер адреса в байтах. (в ESP8266 этот аргумент не
         распознается и размер адреса всегда равен 1 (8 бит))."""
         raise NotImplementedError()
