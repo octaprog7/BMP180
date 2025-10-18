@@ -29,28 +29,28 @@ class BusAdapter:
         device_addr - адрес датчика на шине. Для шины SPI это физический вывод MCU!
         reg_addr - адрес регистра в адресном пространстве датчика.
         bytes_count - размер значения в байтах."""
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def write_register(self, device_addr: int | Pin, reg_addr: int, value: int | bytes | bytearray,
                        bytes_count: int, byte_order: str):
         """записывает данные value в датчик, по адресу reg_addr.
         bytes_count - кол-во записываемых байт из value.
         byte_order - порядок расположения байт в записываемом значении."""
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def read(self, device_addr: int | Pin, n_bytes: int) -> bytes:
         """Читает из устройства на шине с адресом device_addr, n_bytes байт.
         Возвращает экземпляр класса типа bytes"""
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def read_to_buf(self, device_addr: int | Pin, buf: bytearray) -> bytes:
         """Читает из устройства на шине, с адресом device_addr, кол-во байт, равное длине буфера buf.
         Возвращает ссылку на buf"""
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def write(self, device_addr: int | Pin, buf: bytes):
         """Записывает в устройство на шине все байты из буфера buf"""
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def write_const(self, device_addr: int | Pin, val: int, count: int):
         """Отправляет пакет байт со значением val количеством count на шину.
@@ -82,10 +82,10 @@ class BusAdapter:
         Количество считываемых байт определяется длинной буфера buf.
         address_size - определяет размер адреса в байтах. (в ESP8266 этот аргумент не
         распознается и размер адреса всегда равен 1 (8 бит))."""
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def write_buf_to_memory(self, device_addr: int | Pin, mem_addr, buf):
-        raise NotImplementedError
+        raise NotImplementedError()
 
 
 class I2cAdapter(BusAdapter):
