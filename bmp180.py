@@ -179,7 +179,7 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         return curr_pressure + 6.25E-2 * (x1 + x2 + 3791)
 
     """Call start_measurement(...) before call __next__ !!!"""
-    def __next__(self) -> float:
+    def __next__(self) -> float | None:
         """Для поддержки итераций. Возврат текущей температуры или давления"""
         if not self.get_data_status(False):
             return None # данные не готовы!
@@ -220,7 +220,7 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
             return self.get_temperature()
         if 1 == value_index:
             return self.get_pressure()
-        return None
+        raise ValueError(f"Неверное значение value_index: {value_index}")
 
     def is_single_shot_mode(self) -> bool:
         """Возвращает Истина, когда датчик находится в режиме однократных измерений,
