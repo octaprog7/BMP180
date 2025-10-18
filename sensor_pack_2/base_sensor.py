@@ -141,20 +141,20 @@ class BaseSensor(Device):
     """Класс - основа датчика с дополнительными методами"""
 
     def get_id(self):
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def soft_reset(self):
-        raise NotImplementedError
+        raise NotImplementedError()
 
 
 class BaseSensorEx(DeviceEx):
     """Класс - основа датчика"""
 
     def get_id(self):
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def soft_reset(self):
-        raise NotImplementedError
+        raise NotImplementedError()
 
 
 class Iterator:
@@ -162,7 +162,7 @@ class Iterator:
         return self
 
     def __next__(self):
-        raise NotImplementedError
+        raise NotImplementedError()
 
 
 class ITemperatureSensor:
@@ -171,12 +171,12 @@ class ITemperatureSensor:
     def enable_temp_meas(self, enable: bool = True):
         """Включает измерение температуры если enable Истина
         Для переопределения программистом!!!"""
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def get_temperature(self) -> int | float:
         """Возвращает температуру корпуса датчика в градусах Цельсия!
         Для переопределения программистом!!!"""
-        raise NotImplementedError
+        raise NotImplementedError()
 
 
 # 0 - устройство выполняет все свои функции (максимальное энергопотребление)
@@ -195,18 +195,18 @@ class IPower:
         Если значение из регистра устройства не совпадет со шкалой 0-все включено...максимум-все выключено, то
         преобразуйте его!
         """
-        raise NotImplemented
+        raise NotImplementedError()
 
 
 class IDentifier:
     """Интерфейс идентификации"""
 
     def get_id(self):
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def soft_reset(self):
-        """Програмный сброс устройства"""
-        raise NotImplementedError
+        """Программный сброс устройства"""
+        raise NotImplementedError()
 
 
 class IBaseSensorEx:
@@ -215,21 +215,21 @@ class IBaseSensorEx:
     def get_conversion_cycle_time(self) -> int:
         """Возвращает время в мс или мкс преобразования сигнала в цифровой код и готовности его для чтения по шине!
         Для текущих настроек датчика. При изменении настроек следует заново вызвать этот метод!"""
-        raise NotImplemented
+        raise NotImplementedError()
 
     def start_measurement(self):
         """Настраивает параметры датчика и запускает процесс измерения"""
-        raise NotImplemented
+        raise NotImplementedError()
 
     def get_measurement_value(self, value_index: int | None):
         """Возвращает измеренное датчиком значение(значения) по его индексу/номеру."""
-        raise NotImplemented
+        raise NotImplementedError()
 
     def get_data_status(self, raw: bool = True):
         """Возвращает состояние готовности данных для считывания?
         Тип возвращаемого значения выбирайте сами!
         Если raw Истина, то возвращается сырое/не обработанное значение состояния!"""
-        raise NotImplemented
+        raise NotImplementedError()
 
     #def get_config(self, raw: bool = True):
     #    """Возвращает текущие настройки датчика. Если raw - в Истина, то возвращается int, иначе произвольный тип."""
@@ -238,9 +238,9 @@ class IBaseSensorEx:
     def is_single_shot_mode(self) -> bool:
         """Возвращает Истина, когда датчик находится в режиме однократных измерений,
         каждое из которых запускается методом start_measurement"""
-        raise NotImplemented
+        raise NotImplementedError()
 
     def is_continuously_mode(self) -> bool:
         """Возвращает Истина, когда датчик находится в режиме многократных измерений,
         производимых автоматически. Процесс запускается методом start_measurement"""
-        raise NotImplemented
+        raise NotImplementedError()
