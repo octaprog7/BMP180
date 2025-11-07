@@ -22,3 +22,5 @@ Then open main.py in your IDE and run it.
 
 ![alt text](https://github.com/octaprog7/BMP180/blob/master/pics/breadboard_180.jpg)
 
+## Display 
+Example of displaying atmospheric air pressure read from a bmp180 on a segment display: https://github.com/octaprog7/seg_displays
