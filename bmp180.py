@@ -20,6 +20,8 @@ def _calibration_regs_addr() -> iter:
 class Bmp180(IBaseSensorEx, IDentifier, Iterator):
     """Класс для работы с датчиком давления воздуха Bosch BMP180"""
 
+    MSK_BIT_SCO = const(0b10_0000)
+    CONV_TIME_PRESS = const((5, 8, 14, 26))  # по индексу OSS
     # Регистры BMP180
     REG_ID = const(0xD0)
     REG_SOFT_RESET = const(0xE0)
@@ -53,11 +55,16 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         # предварительный расчет
         self._precalculate()
 
+    @staticmethod
+    def _check_cc_index(index: int):
+        """Проверяет на верность индекс калибровочного коэффициента."""
+        check_value(index, range(11), f"Invalid index value: {index}")
+
     @micropython.native
     def get_calibration_data(self, index: int) -> int:
         """возвращает калибровочный коэффициент по его индексу (0..10).
         returns the calibration coefficient by its index (0..10)"""
-        check_value(index, range(11), f"Invalid index value: {index}")
+        Bmp180._check_cc_index(index)
         return self._cfa[index]
 
     @micropython.native
@@ -73,6 +80,37 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         self._press3 = self.get_calibration_data(6) / 2 ** 28
         self._press4 = abs(self.get_calibration_data(3)) / 2 ** 15
 
+    @staticmethod
+    @micropython.native
+    def _validate_cc(index: int, value: int) -> tuple[bool, str | None]:
+        """Проверка калибровочного коэффициента по индексу и значению.
+        Индексы: 0-AC1, 1-AC2, 2-AC3, 3-AC4, 4-AC5, 5-AC6,
+                 6-B1,  7-B2,  8-MB,  9-MC,  10-MD."""
+        Bmp180._check_cc_index(index)
+
+        # Границы допустимых значений (минимум и максимум для индексов 0..10)
+        _MIN = (-32768, -32768, -32768, 0, 0, 0, -32768, -32768, -32768, -15000, -32768)
+        _MAX = (32767, 32767, 32767, 65535, 65535, 65535, 32767, 32767, 32767, 15000, 32767)
+
+        min_v, max_v = _MIN[index], _MAX[index]
+
+        # Проверка границ
+        if value < min_v or value > max_v:
+            # Индекс 9 (MC) — единственный не важный, только предупреждение
+            if 9 == index:
+                return True, f"WARN: MC={value} out of typical range"
+            return False, f"ERR: coeff {index} out of bounds [{min_v}..{max_v}]"
+
+        # AC4, AC5, AC6 (индексы 3..5) в рабочих датчиках всегда > 1000
+        if index in range(3, 6) and value < 1000:
+            return False, f"ERR: coeff {index}={value} low value!"
+
+        # "мусор", пустой EEPROM или поддельный чип
+        if value in (0x0000, 0xFFFF, 0x7FFF, 0x8000):
+            return False, f"ERR: coeff. {index}=0x{value:x} looks invalid!"
+
+        return True, None
+
     def _read_calibration_data(self) -> int:
         """Читает калибровочные значение из датчика.
         read calibration values from sensor. return count read values"""
@@ -83,8 +121,9 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
             reg_val = conn.read_reg(addr, 2)
             rv = conn.unpack("H" if 2 < index < 6 else "h", reg_val)[0]
             # check
-            if rv == 0x00 or rv == 0xFFFF:
-                raise ValueError(f"Invalid register addr: {addr} value: {hex(rv)}")
+            is_ok, msg = Bmp180._validate_cc(index, rv)
+            if not is_ok:
+                raise ValueError(msg)
             self._cfa.append(rv)
         return len(self._cfa)
 
@@ -206,11 +245,11 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
     def get_conversion_cycle_time(self) -> int:
         """Возвращает время в мс преобразования сигнала в цифровой код и готовности его для чтения по шине!
         Для текущих настроек датчика. При изменении настроек следует заново вызвать этот метод!"""
-        delays_ms = 5, 8, 14, 26
+        cct = self.CONV_TIME_PRESS
         if self.is_temperature_measurement():
-            return delays_ms[0]    # temperature
+            return cct[0]    # temperature
         # pressure
-        return delays_ms[self.get_oversample()]
+        return cct[self.get_oversample()]
 
     def get_measurement_value(self, value_index: int) -> float:
         """Возвращает измеренное датчиком значение(значения) по его индексу/номеру.
@@ -243,4 +282,4 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         raw_val = self._connection.read_reg(Bmp180.REG_CTRL, 1)[0]
         if raw:
             return raw_val
-        return 0 == (raw_val & 0b10_0000)
+        return 0 == (raw_val & self.MSK_BIT_SCO)
