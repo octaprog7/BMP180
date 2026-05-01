@@ -1,0 +1,444 @@
+chip_id: 0x55
+Calibration data:
+[7315, -1145, -14522, 34195, 25244, 18552, 6515, 44, -32768, -11786, 2671]
+*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_
+Reading temperature in a cycle.
+Air temperature: 25.44567 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.43952 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.43952 ° С	Delay: 5 [ms]
+Air temperature: 25.45798 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.44567 ° С	Delay: 5 [ms]
+Air temperature: 25.45798 ° С	Delay: 5 [ms]
+Air temperature: 25.45798 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.47028 ° С	Delay: 5 [ms]
+Air temperature: 25.45798 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.45798 ° С	Delay: 5 [ms]
+Air temperature: 25.47028 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.45798 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.45182 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.47028 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.47028 ° С	Delay: 5 [ms]
+Air temperature: 25.48258 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.47028 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.47028 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47028 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47028 ° С	Delay: 5 [ms]
+Air temperature: 25.47028 ° С	Delay: 5 [ms]
+Air temperature: 25.47028 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.48258 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.46412 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.48258 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.48258 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.48258 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.47643 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.48873 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.49488 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.50718 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.53793 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.50103 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.51333 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.51948 ° С	Delay: 5 [ms]
+Air temperature: 25.53793 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.53178 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+Air temperature: 25.52563 ° С	Delay: 5 [ms]
+*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_
+Reading pressure using an iterator!
+Air pressure: 98788.5 Pa | 740.974 mmHg | min/max: 98788.5/98788.5 Pa
+Air pressure: 98793.6 Pa | 741.013 mmHg | min/max: 98788.5/98793.6 Pa
+Air pressure: 98787.4 Pa | 740.966 mmHg | min/max: 98787.4/98793.6 Pa
+Air pressure: 98787.4 Pa | 740.966 mmHg | min/max: 98787.4/98793.6 Pa
+Air pressure: 98784.5 Pa | 740.944 mmHg | min/max: 98784.5/98793.6 Pa
+Air pressure: 98779.7 Pa | 740.908 mmHg | min/max: 98779.7/98793.6 Pa
+Air pressure: 98780.8 Pa | 740.917 mmHg | min/max: 98779.7/98793.6 Pa
+Air pressure: 98777.5 Pa | 740.892 mmHg | min/max: 98777.5/98793.6 Pa
+Air pressure: 98781.5 Pa | 740.922 mmHg | min/max: 98777.5/98793.6 Pa
+Air pressure: 98781.1 Pa | 740.919 mmHg | min/max: 98777.5/98793.6 Pa
+Air pressure: 98777.1 Pa | 740.889 mmHg | min/max: 98777.1/98793.6 Pa
+Air pressure: 98776.8 Pa | 740.886 mmHg | min/max: 98776.8/98793.6 Pa
+Air pressure: 98777.9 Pa | 740.895 mmHg | min/max: 98776.8/98793.6 Pa
+Air pressure: 98779.3 Pa | 740.906 mmHg | min/max: 98776.8/98793.6 Pa
+Air pressure: 98786.3 Pa | 740.958 mmHg | min/max: 98776.8/98793.6 Pa
+Air pressure: 98776.4 Pa | 740.884 mmHg | min/max: 98776.4/98793.6 Pa
+Air pressure: 98779.7 Pa | 740.908 mmHg | min/max: 98776.4/98793.6 Pa
+Air pressure: 98777.1 Pa | 740.889 mmHg | min/max: 98776.4/98793.6 Pa
+Air pressure: 98776.0 Pa | 740.881 mmHg | min/max: 98776.0/98793.6 Pa
+Air pressure: 98774.6 Pa | 740.870 mmHg | min/max: 98774.6/98793.6 Pa
+Air pressure: 98774.9 Pa | 740.873 mmHg | min/max: 98774.6/98793.6 Pa
+Air pressure: 98777.1 Pa | 740.889 mmHg | min/max: 98774.6/98793.6 Pa
+Air pressure: 98782.3 Pa | 740.928 mmHg | min/max: 98774.6/98793.6 Pa
+Air pressure: 98781.1 Pa | 740.919 mmHg | min/max: 98774.6/98793.6 Pa
+Air pressure: 98776.8 Pa | 740.886 mmHg | min/max: 98774.6/98793.6 Pa
+Air pressure: 98778.6 Pa | 740.900 mmHg | min/max: 98774.6/98793.6 Pa
+Air pressure: 98776.0 Pa | 740.881 mmHg | min/max: 98774.6/98793.6 Pa
+Air pressure: 98777.1 Pa | 740.889 mmHg | min/max: 98774.6/98793.6 Pa
+Air pressure: 98777.5 Pa | 740.892 mmHg | min/max: 98774.6/98793.6 Pa
+Air pressure: 98778.6 Pa | 740.900 mmHg | min/max: 98774.6/98793.6 Pa
+Air pressure: 98773.5 Pa | 740.862 mmHg | min/max: 98773.5/98793.6 Pa
+Air pressure: 98779.3 Pa | 740.906 mmHg | min/max: 98773.5/98793.6 Pa
+Air pressure: 98773.8 Pa | 740.864 mmHg | min/max: 98773.5/98793.6 Pa
+Air pressure: 98776.8 Pa | 740.886 mmHg | min/max: 98773.5/98793.6 Pa
+Air pressure: 98773.1 Pa | 740.859 mmHg | min/max: 98773.1/98793.6 Pa
+Air pressure: 98771.6 Pa | 740.848 mmHg | min/max: 98771.6/98793.6 Pa
+Air pressure: 98780.8 Pa | 740.917 mmHg | min/max: 98771.6/98793.6 Pa
+Air pressure: 98775.7 Pa | 740.878 mmHg | min/max: 98771.6/98793.6 Pa
+Air pressure: 98771.6 Pa | 740.848 mmHg | min/max: 98771.6/98793.6 Pa
+Air pressure: 98771.6 Pa | 740.848 mmHg | min/max: 98771.6/98793.6 Pa
+Air pressure: 98772.4 Pa | 740.853 mmHg | min/max: 98771.6/98793.6 Pa
+Air pressure: 98770.9 Pa | 740.842 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98774.6 Pa | 740.870 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98777.1 Pa | 740.889 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98777.9 Pa | 740.895 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98773.5 Pa | 740.862 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98773.8 Pa | 740.864 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98772.0 Pa | 740.851 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98772.4 Pa | 740.853 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98774.9 Pa | 740.873 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98770.9 Pa | 740.842 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98774.6 Pa | 740.870 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98773.5 Pa | 740.862 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98779.7 Pa | 740.908 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98781.1 Pa | 740.919 mmHg | min/max: 98770.9/98793.6 Pa
+Air pressure: 98768.3 Pa | 740.823 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98774.6 Pa | 740.870 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98773.8 Pa | 740.864 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98770.2 Pa | 740.837 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98768.7 Pa | 740.826 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98775.3 Pa | 740.875 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98772.7 Pa | 740.856 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98772.4 Pa | 740.853 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98769.1 Pa | 740.829 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98777.9 Pa | 740.895 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98778.6 Pa | 740.900 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98772.0 Pa | 740.851 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98768.3 Pa | 740.823 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98772.0 Pa | 740.851 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98774.9 Pa | 740.873 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98770.2 Pa | 740.837 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98770.5 Pa | 740.840 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98777.5 Pa | 740.892 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98769.8 Pa | 740.834 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98769.1 Pa | 740.829 mmHg | min/max: 98768.3/98793.6 Pa
+Air pressure: 98768.0 Pa | 740.820 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98772.4 Pa | 740.853 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98772.4 Pa | 740.853 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98773.8 Pa | 740.864 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98772.4 Pa | 740.853 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98770.9 Pa | 740.842 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98775.7 Pa | 740.878 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98771.3 Pa | 740.845 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98779.3 Pa | 740.906 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98770.9 Pa | 740.842 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98769.1 Pa | 740.829 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98776.0 Pa | 740.881 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98769.1 Pa | 740.829 mmHg | min/max: 98768.0/98793.6 Pa
+Air pressure: 98766.5 Pa | 740.809 mmHg | min/max: 98766.5/98793.6 Pa
+Air pressure: 98773.1 Pa | 740.859 mmHg | min/max: 98766.5/98793.6 Pa
+Air pressure: 98775.7 Pa | 740.878 mmHg | min/max: 98766.5/98793.6 Pa
+Air pressure: 98771.6 Pa | 740.848 mmHg | min/max: 98766.5/98793.6 Pa
+Air pressure: 98769.8 Pa | 740.834 mmHg | min/max: 98766.5/98793.6 Pa
+Air pressure: 98764.6 Pa | 740.796 mmHg | min/max: 98764.6/98793.6 Pa
+Air pressure: 98765.4 Pa | 740.801 mmHg | min/max: 98764.6/98793.6 Pa
+Air pressure: 98765.8 Pa | 740.804 mmHg | min/max: 98764.6/98793.6 Pa
+Air pressure: 98763.6 Pa | 740.787 mmHg | min/max: 98763.6/98793.6 Pa
+Air pressure: 98769.1 Pa | 740.829 mmHg | min/max: 98763.6/98793.6 Pa
+Air pressure: 98769.1 Pa | 740.829 mmHg | min/max: 98763.6/98793.6 Pa
+Air pressure: 98766.1 Pa | 740.807 mmHg | min/max: 98763.6/98793.6 Pa
+Air pressure: 98769.4 Pa | 740.831 mmHg | min/max: 98763.6/98793.6 Pa
+Air pressure: 98765.4 Pa | 740.801 mmHg | min/max: 98763.6/98793.6 Pa
+Air pressure: 98762.8 Pa | 740.782 mmHg | min/max: 98762.8/98793.6 Pa
+Air pressure: 98770.5 Pa | 740.840 mmHg | min/max: 98762.8/98793.6 Pa
