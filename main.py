@@ -7,11 +7,84 @@ import bmp180
 import time
 from sensor_pack_2.bus_service import I2cAdapter
 
-def from_pa_to_mmhg(value: float) -> float | None:
-    """Convert air pressure from Pa to mm Hg"""
-    if isinstance(value, (float, int)):
-        return 7.50062E-3 * value
-    return None
+# преобразование и фильтрация давления
+def pa_to_unit(value_pa: float, unit: str = 'hpa') -> float:
+    """Преобразует давление из Па в нужную единицу."""
+    if unit == 'hpa':
+        return value_pa * 0.01
+    if unit == 'mmhg':
+        return value_pa * 0.00750061561303
+    if unit == 'psi':
+        return value_pa * 0.00014503773773
+    if unit == 'atm':
+        return value_pa * 9.86923266716e-06
+    return value_pa  # 'pa' или неизвестная единица
+
+
+def smooth_ema(new_val: float, prev_ema: float | None, alpha: float = 0.25) -> float:
+    """Экспоненциальное скользящее среднее (EMA).
+    alpha: 0.1..0.3 — плавное сглаживание, 0.4..0.6 — быстрый отклик."""
+    if prev_ema is None:
+        return new_val
+    # Ограничение alpha
+    if alpha < 0.0:
+        alpha = 0.0
+    elif alpha > 1.0:
+        alpha = 1.0
+    return alpha * new_val + (1.0 - alpha) * prev_ema
+
+
+def smooth_ma(window_vals: list, window: int = 4) -> float:
+    """Простое скользящее среднее по последним `window` значениям."""
+    if not window_vals:
+        return 0.0
+    # срез без создания лишнего списка, если в окне больше данных
+    if len(window_vals) <= window:
+        return sum(window_vals) / len(window_vals)
+    # суммирование последних `window` элементов
+    total, count = 0, 0
+    for i in range(len(window_vals) - window, len(window_vals)):
+        total += window_vals[i]
+        count += 1
+    return total / count
+
+
+def format_press(value_pa: float, unit: str = 'hpa', decimals: int = 2) -> str:
+    """Форматирует давление для вывода: '1013.25 гПа'. Без словарей."""
+    # Получаем конвертированное значение
+    val = pa_to_unit(value_pa, unit)
+    # Выбор метки через if/elif
+    if unit == 'pa':
+        label = 'Па'
+    elif unit == 'hpa':
+        label = 'гПа'
+    elif unit == 'mmhg':
+        label = 'мм рт. ст.'
+    elif unit == 'psi':
+        label = 'PSI'
+    elif unit == 'atm':
+        label = 'атм'
+    else:
+        label = 'Па'  # по умолчанию
+    return f"{val:.{decimals}f} {label}"
+
+# Для погодной станции (точность важнее скорости):
+USE_FILTER = not True
+FILTER_METHOD = 'ema'
+EMA_ALPHA = 0.15    # очень плавная кривая
+MA_WINDOW = 4       # размер окна для MA. MA = Moving Average (простое скользящее среднее).
+
+# Для высотомера (минимум задержки):
+# USE_FILTER = True
+# FILTER_METHOD = 'ema'
+# EMA_ALPHA = 0.4   # быстрый отклик
+
+# Для отладки (видеть "сырые" данные):
+# USE_FILTER = False
+
+# --- состояние фильтра ---
+ema_state = None
+ema_history = []
 
 
 if __name__ == '__main__':
@@ -49,16 +122,40 @@ if __name__ == '__main__':
     time.sleep_ms(delay)  # delay for pressure measurement
 
     min_press, max_press, average_press = 1E6, 0.0, 0.0
+    _unit = 'mmhg'
     print(20 * "*_")
     print("Reading pressure using an iterator!")
     for index, press in enumerate(ps):
         if press is None:
             continue
+
+        # фильтрация старт
+        if USE_FILTER:
+            if FILTER_METHOD == 'ema':
+                press_filt = smooth_ema(press, ema_state, EMA_ALPHA)
+                ema_state = press_filt  # сохраняем состояние для следующего шага
+            else:  # 'ma'
+                ema_history.append(press)
+                press_filt = smooth_ma(ema_history, MA_WINDOW)
+                if len(ema_history) > 16:  # ограничиваем рост памяти
+                    ema_history.pop(0)
+        else:
+            press_filt = press
+        # фильтрация стоп
+
+        # Обновляем мин/макс по фильтрованному значению
+        min_press = min(press_filt, min_press)
+        max_press = max(press_filt, max_press)
+
+        # Вывод: сырое и фильтрованное + конвертация
+        mmhg_raw = pa_to_unit(value_pa=press, unit=_unit)
+        mmhg_filt = pa_to_unit(value_pa=press_filt, unit=_unit)
+
+        if USE_FILTER:
+            print(f"P: {press:.1f} Pa → {press_filt:.1f} Pa | {mmhg_filt:.3f} mmHg | min/max: {min_press:.1f}/{max_press:.1f} Pa")
+        else:
+            print(f"Air pressure: {press:.1f} Pa | {mmhg_raw:.3f} mmHg | min/max: {min_press:.1f}/{max_press:.1f} Pa")
+
         time.sleep_ms(delay)  # delay for pressure measurement
         ps.start_measurement(measure_temperature=False)
-        min_press = min(press, min_press)
-        max_press = max(press, max_press)
-        average_press = 0.5 * (min_press + max_press)
-        # print(f"Air pressure: {press} Pa\t{fromPaToMmHg(press)} mm Hg\tDelay: {delay} [ms]")
-        mmhg = from_pa_to_mmhg(press)
-        print(f"Air pressure min max average [Pa]: {min_press} {max_press} {average_press}/{mmhg} Pa/mmHg")
+
