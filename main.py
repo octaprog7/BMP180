@@ -2,9 +2,10 @@
 
 # ВНИМАНИЕ: не подключайте питание датчика к 5В, иначе датчик выйдет из строя! Только 3.3В!!!
 # WARNING: do not connect "+" to 5V or the sensor will be damaged!
-from machine import I2C
-import bmp180
 import time
+import bmp180
+from machine import I2C, Pin
+from micropython import const
 from sensor_pack_2.bus_service import I2cAdapter
 
 # преобразование и фильтрация давления
@@ -55,18 +56,18 @@ def format_press(value_pa: float, unit: str = 'hpa', decimals: int = 2) -> str:
     val = pa_to_unit(value_pa, unit)
     # Выбор метки через if/elif
     if unit == 'pa':
-        label = 'Па'
+        lbl = 'Па'
     elif unit == 'hpa':
-        label = 'гПа'
+        lbl = 'гПа'
     elif unit == 'mmhg':
-        label = 'мм рт. ст.'
+        lbl = 'мм рт. ст.'
     elif unit == 'psi':
-        label = 'PSI'
+        lbl = 'PSI'
     elif unit == 'atm':
-        label = 'атм'
+        lbl = 'атм'
     else:
-        label = 'Па'  # по умолчанию
-    return f"{val:.{decimals}f} {label}"
+        lbl = 'Па'  # по умолчанию
+    return f"{val:.{decimals}f} {lbl}"
 
 # Для погодной станции (точность важнее скорости):
 USE_FILTER = not True
@@ -86,6 +87,12 @@ MA_WINDOW = 4       # размер окна для MA. MA = Moving Average (пр
 ema_state = None
 ema_history = []
 
+I2C_ID: int = const(1)
+SCL_PIN: int = const(7)
+SDA_PIN: int = const(6)
+I2C_FREQ: int = const(400_000)
+SENSOR_ADDR: int = const(0x77)
+ITERATIONS: int = const(99)
 
 if __name__ == '__main__':
     # пожалуйста установите выводы scl и sda в конструкторе для вашей платы, иначе ничего не заработает!
@@ -97,7 +104,8 @@ if __name__ == '__main__':
     # Замените id=1 на id=0, если пользуетесь первым портом I2C !!!
     # Warning!!!
     # Replace id=1 with id=0 if you are using the first I2C port !!!
-    adaptor = I2cAdapter(I2C(1, freq=400_000))
+    i2c = I2C(id=I2C_ID, scl=Pin(SCL_PIN), sda=Pin(SDA_PIN), freq=I2C_FREQ)   # on Raspberry Pi Pico
+    adaptor = I2cAdapter(i2c)
     # ps - pressure sensor
     ps = bmp180.Bmp180(adaptor)
 
@@ -107,17 +115,21 @@ if __name__ == '__main__':
     print(f"chip_id: 0x{res:x}")
 
     print("Calibration data:")
-    print([ps.get_calibration(i) for i in range(11)])
+    _mx = ps.get_calibration(None)
+    print([ps.get_calibration(i) for i in range(_mx)])
 
     print(20 * "*_")
     print("Reading temperature in a cycle.")
-    for i in range(333):
-        ps.start_measurement(measure_temperature=True)  # switch to temperature
+    ps.set_channels(temp_en=True, press_en=False)
+    for i in range(ITERATIONS):
+        ps.start_measurement()  # switch to temperature
         delay = ps.get_conversion_cycle_time()
         time.sleep_ms(delay)    # delay for temperature measurement
         print(f"Air temperature: {ps.get_temperature()} \xB0 С\tDelay: {delay} [ms]")
 
-    ps.start_measurement(measure_temperature=False)     # switch to pressure
+    # enable measure air pressure
+    ps.set_channels(temp_en=False, press_en=True)
+    ps.start_measurement()
     delay = ps.get_conversion_cycle_time()
     time.sleep_ms(delay)  # delay for pressure measurement
 
@@ -147,14 +159,12 @@ if __name__ == '__main__':
         max_press = max(press_filtered, max_press)
 
         # Вывод: сырое и фильтрованное + конвертация
-        mmhg_raw = pa_to_unit(value_pa=press_filtered, unit=_unit)
+        mmhg_raw = pa_to_unit(value_pa=press, unit=_unit)
         mmhg_filt = pa_to_unit(value_pa=press_filtered, unit=_unit)
 
-        if USE_FILTER:
-            print(f"P: {press:.1f} Pa → {press_filtered:.1f} Pa | {mmhg_filt:.3f} mmHg | min/max: {min_press:.1f}/{max_press:.1f} Pa")
-        else:
-            print(f"Air pressure: {press:.1f} Pa | {mmhg_raw:.3f} mmHg | min/max: {min_press:.1f}/{max_press:.1f} Pa")
+        label = "->" if USE_FILTER else "|"
+        print(f"Air pressure: {press:.1f} Pa {label} {press_filtered:.1f} Pa | {mmhg_filt:.3f} mmHg | min/max: {min_press:.1f}/{max_press:.1f} Pa")
 
         time.sleep_ms(delay)  # delay for pressure measurement
-        ps.start_measurement(measure_temperature=False)
+        ps.start_measurement()
 
