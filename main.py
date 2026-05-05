@@ -105,9 +105,9 @@ if __name__ == '__main__':
     # Warning!!!
     # Replace id=1 with id=0 if you are using the first I2C port !!!
     i2c = I2C(id=I2C_ID, scl=Pin(SCL_PIN), sda=Pin(SDA_PIN), freq=I2C_FREQ)   # on Raspberry Pi Pico
-    adaptor = I2cAdapter(i2c)
+    adapter = I2cAdapter(i2c)
     # ps - pressure sensor
-    ps = bmp180.Bmp180(adaptor)
+    ps = bmp180.Bmp180(adapter=adapter, address=SENSOR_ADDR, oss=0b11)
 
     # если у вас посыпались исключения EIO, то проверьте все соединения.
     # if you have EIO exceptions, then check all connections.
