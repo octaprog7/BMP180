@@ -7,28 +7,29 @@ import array
 
 from sensor_pack_2 import bus_service
 from sensor_pack_2.base_sensor import IBaseSensorEx, Iterator, IDentifier, DeviceEx, check_value
+from sensor_pack_2.bmp_common import IBMPCommon, OversamplingCoeff, MeasChannels
 
 # ВНИМАНИЕ: не подключайте питание датчика к 5В, иначе датчик выйдет из строя! Только 3.3В!!!
 # WARNING: do not connect "+" to 5V or the sensor will be damaged!
 
+
+_MSK_BIT_SCO = const(0b10_0000)
+_CONV_TIME_PRESS = const((5, 8, 14, 26))  # по индексу OSS
+# Регистры BMP180
+_REG_ID = const(0xD0)
+_REG_SOFT_RESET = const(0xE0)
+_REG_CTRL = const(0xF4)
+_REG_OUT_MSB = const(0xF6)
+_PRESSURE_MEAS = const(0x14)
+_TEMPERATURE_MEAS = const(0x0E)
 
 def _calibration_regs_addr() -> iter:
     """возвращает итератор с адресами внутренних регистров датчика, хранящих калибровочные коэффициенты."""
     return range(0xAA, 0xBF, 2)
 
 
-class Bmp180(IBaseSensorEx, IDentifier, Iterator):
+class Bmp180(IBaseSensorEx, IDentifier, Iterator, IBMPCommon):
     """Класс для работы с датчиком давления воздуха Bosch BMP180"""
-
-    MSK_BIT_SCO = const(0b10_0000)
-    CONV_TIME_PRESS = const((5, 8, 14, 26))  # по индексу OSS
-    # Регистры BMP180
-    REG_ID = const(0xD0)
-    REG_SOFT_RESET = const(0xE0)
-    REG_CTRL = const(0xF4)
-    REG_OUT_MSB = const(0xF6)
-    PRESSURE_MEAS = const(0x14)
-    TEMPERATURE_MEAS = const(0x0E)
 
     def __init__(self, adapter: bus_service.I2cAdapter, address: int = 0x77, oss=0b11):
         """i2c - объект класса I2C; oss (oversample_settings) (0..3) - точность измерения 0-грубо, но быстро,
@@ -45,8 +46,9 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         self._tmp0 = None    # for precalculate
         self._B5 = None      # for precalculate
         #
-        self._oversample = None
-        self.set_oversample(oss)
+        self._oversample_press = None
+        # self.set_oversample(oss)
+        self.set_oversampling(temp=0, press=oss)
         # массив, хранящий калибровочные коэффициенты (11 штук)
         # array storing calibration coefficients (11 elements)
         self._cfa = array.array("l")  # signed long elements
@@ -56,29 +58,32 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         self._precalculate()
 
     @staticmethod
-    def _check_cc_index(index: int):
+    def _check_cc(index: int):
         """Проверяет на верность индекс калибровочного коэффициента."""
-        check_value(index, range(11), f"Invalid index value: {index}")
+        check_value(value=index, valid_range=range(11), error_msg=f"Invalid index value: {index}")
 
     @micropython.native
-    def get_calibration_data(self, index: int) -> int:
+    def get_calibration(self, index: int) -> int:
         """возвращает калибровочный коэффициент по его индексу (0..10).
         returns the calibration coefficient by its index (0..10)"""
-        Bmp180._check_cc_index(index)
+        if index is None:
+            return len(self._cfa)
+        Bmp180._check_cc(index)
         return self._cfa[index]
 
     @micropython.native
     def _precalculate(self):
         """предварительно вычисленные значения. precomputed values"""
         # для расчета температуры/for temperature calculation
-        self._tmp0 = self.get_calibration_data(4) / 2 ** 15  #
-        self._tmp1 = self.get_calibration_data(9) * 2 ** 11  #
+        get_cc = self.get_calibration
+        self._tmp0 = get_cc(4) / 2 ** 15  #
+        self._tmp1 = get_cc(9) * 2 ** 11  #
         # для расчета давления/for pressure calculation
-        self._press0 = self.get_calibration_data(7) / 2 ** 23
-        self._press1 = self.get_calibration_data(1) / 2 ** 11
-        self._press2 = self.get_calibration_data(2) / 2 ** 13
-        self._press3 = self.get_calibration_data(6) / 2 ** 28
-        self._press4 = abs(self.get_calibration_data(3)) / 2 ** 15
+        self._press0 = get_cc(7) / 2 ** 23
+        self._press1 = get_cc(1) / 2 ** 11
+        self._press2 = get_cc(2) / 2 ** 13
+        self._press3 = get_cc(6) / 2 ** 28
+        self._press4 = abs(get_cc(3)) / 2 ** 15
 
     @staticmethod
     @micropython.native
@@ -86,7 +91,7 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         """Проверка калибровочного коэффициента по индексу и значению.
         Индексы: 0-AC1, 1-AC2, 2-AC3, 3-AC4, 4-AC5, 5-AC6,
                  6-B1,  7-B2,  8-MB,  9-MC,  10-MD."""
-        Bmp180._check_cc_index(index)
+        Bmp180._check_cc(index)
 
         # Границы допустимых значений (минимум и максимум для индексов 0..10)
         _MIN = (-32768, -32768, -32768, 0, 0, 0, -32768, -32768, -32768, -15000, -32768)
@@ -131,17 +136,17 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         """Возвращает идентификатор датчика. Правильное значение - 0х55.
         Returns the ID of the sensor. The correct value is 0x55."""
         conn = self._connection
-        res = conn.read_reg(Bmp180.REG_ID, 1)
+        res = conn.read_reg(_REG_ID, 1)
         return int(res[0])
 
     def soft_reset(self):
         """программный сброс датчика.
         software reset of the sensor"""
         conn = self._connection
-        conn.write_reg(Bmp180.REG_SOFT_RESET, 0xB6, 1)
+        conn.write_reg(_REG_SOFT_RESET, 0xB6, 1)
 
     @micropython.native
-    def start_measurement(self, measure_temperature: bool = True):
+    def start_measurement(self):
         """Запускает процесс измерения температуры или давления датчиком.
         Если measure_temperature==Истина тогда будет выполнен запуск измерения температуры иначе давления!
         Вы должны подождать результата 5 мс после запуска измерения температуры.
@@ -151,39 +156,39 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         1               8
         2               14
         3               26"""
-        loc_oss = self.get_oversample()
+        loc_oss = self.set_oversampling(None, None).pressure
         start_conversion = 0b0010_0000   # bit 5 - запуск преобразования (1)
-        bit_4_0 = Bmp180.PRESSURE_MEAS  # измеряю давление
-        if measure_temperature:
-            bit_4_0 = Bmp180.TEMPERATURE_MEAS  # измеряю температуру
-            loc_oss = 0  # обнуляю OSS при температуре
+        bit_4_0 = _PRESSURE_MEAS  # измеряю давление
+        if self._temp_or_press:
+            bit_4_0 = _TEMPERATURE_MEAS  # измеряю температуру
+            loc_oss = 0  # обнуляю OSS при измерении температуры
         val = loc_oss << 6 | start_conversion | bit_4_0
-        self._connection.write_reg(Bmp180.REG_CTRL, val, 1)
-        self.set_temperature_measurement(measure_temperature)
+        self._connection.write_reg(_REG_CTRL, val, 1)
 
     def _get_temp_raw(self) -> int:
         """Возвращает сырое значение температуры."""
         # считывание сырого значения
         conn = self._connection
-        raw = conn.read_reg(Bmp180.REG_OUT_MSB, 2)
+        raw = conn.read_reg(_REG_OUT_MSB, 2)
         return conn.unpack("H", raw)[0]  # unsigned short
 
     @micropython.native
     def get_temperature(self) -> float:
         """возвращает значение температуры, измеренное датчиком в Цельсиях.
         returns the temperature value measured by the sensor in Celsius"""
+        get_cc = self.get_calibration
         raw_t = self._get_temp_raw()
-        a = self._tmp0 * (raw_t - self.get_calibration_data(5))
-        b = self._tmp1 / (a + self.get_calibration_data(10))
+        a = self._tmp0 * (raw_t - get_cc(5))
+        b = self._tmp1 / (a + get_cc(10))
         self._B5 = a + b  #
         return 6.25E-3 * (a + b + 8)
 
     def _get_press_raw(self) -> int:
         """Возвращает сырое значение атмосферного давления."""
         # считывание сырого значения (три байта)
-        raw = self._connection.read_reg(Bmp180.REG_OUT_MSB, 3)
+        raw = self._connection.read_reg(_REG_OUT_MSB, 3)
         msb, lsb, xlsb = raw
-        oss = self.get_oversample()
+        oss = self.set_oversampling(None, None).pressure
         return ((msb << 16) + (lsb << 8) + xlsb) >> (8 - oss)
 
     @micropython.native
@@ -196,13 +201,13 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         if self._B5 is None:
             raise RuntimeError("Call get_temperature() before get_pressure()")
         #
-        oss = self.get_oversample()
         uncompensated = self._get_press_raw()
         b6 = self._B5-4000
         x1 = self._press0 * b6 ** 2  #
         x2 = self._press1 * b6
         x3 = x1 + x2
-        b3 = (2 + ((x3 + 4 * self.get_calibration_data(0)) * 2**oss)) / 4
+        oss = self.set_oversampling(None, None).pressure
+        b3 = (2 + ((x3 + 4 * self.get_calibration(0)) * 2**oss)) / 4
 
         x1 = b6 * self._press2
         x2 = self._press3 * b6 ** 2
@@ -222,34 +227,39 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         """Для поддержки итераций. Возврат текущей температуры или давления"""
         if not self.get_data_status(False):
             return None # данные не готовы!
-        if self.is_temperature_measurement():
+        _act_channels = self.set_channels(temp_en=None, press_en=None)
+        if _act_channels.temperature:
             return self.get_temperature()
         return self.get_pressure()
 
-    def set_temperature_measurement(self, value: bool):
-        """Если value Истина, тогда после вызова start_measurement, будет выполнен запуск измерения температуры иначе давления!"""
-        self._temp_or_press = value
+    def set_channels(self, temp_en, press_en) -> None | MeasChannels:
+        """Датчик не может одновременно измерять температуру И давление!
+        Только по очереди."""
+        if temp_en is None and press_en is None:
+            return MeasChannels(temperature=True, pressure=True)
+        if press_en is True and temp_en is False:
+            raise ValueError("BMP180: измерение давления невозможно без температуры!")
+        self._temp_or_press = temp_en
+        return None
 
-    def is_temperature_measurement(self) -> bool:
-        """Если возвращает Истина, тогда после вызова start_measurement, будет выполнен запуск измерения температуры иначе давления!"""
-        return self._temp_or_press
-
-    def get_oversample(self) -> int:
-        """Возвращает коэффициент избыточной (oversampling ratio) выборки измерения давления (0: однократный, 1: 2 раза, 2: 4 раза, 3: 8 раз)."""
-        return self._oversample
-
-    def set_oversample(self, value: int):
+    def set_oversampling(self, temp: int | None = None, press: int | None = None) -> None | OversamplingCoeff:
         """Устанавливает коэффициент избыточной (oversampling ratio) выборки измерения давления (0: однократный, 1: 2 раза, 2: 4 раза, 3: 8 раз)."""
-        self._oversample = check_value(value, range(4), f"Invalid oversample settings: {value}")
+        if press is None and temp is None:
+            return OversamplingCoeff(temperature=0, pressure=self._oversample_press)
+        if press is not None:
+            self._oversample_press = check_value(press, range(4), f"Invalid oversample settings: {press}")
+        # Запись OSS в регистр происходит только при start_measurement()
+        return None
 
     def get_conversion_cycle_time(self) -> int:
         """Возвращает время в мс преобразования сигнала в цифровой код и готовности его для чтения по шине!
         Для текущих настроек датчика. При изменении настроек следует заново вызвать этот метод!"""
-        cct = self.CONV_TIME_PRESS
-        if self.is_temperature_measurement():
+        cct = _CONV_TIME_PRESS
+        _os_p = self.set_oversampling(None,None).pressure
+        if self.set_channels(None, None).temperature:
             return cct[0]    # temperature
         # pressure
-        return cct[self.get_oversample()]
+        return cct[_os_p]
 
     def get_measurement_value(self, value_index: int) -> float:
         """Возвращает измеренное датчиком значение(значения) по его индексу/номеру.
@@ -279,7 +289,24 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator):
         бит SCO (Start of Conversion) в регистре управления измерениями _REG_CTRL.
         Пока бит SCO равен 1 — преобразование в процессе.
         Когда SCO в 0 — преобразование завершено, данные готовы для чтения из регистров результата."""
-        raw_val = self._connection.read_reg(Bmp180.REG_CTRL, 1)[0]
+        raw_val = self._connection.read_reg(_REG_CTRL, 1)[0]
         if raw:
             return raw_val
-        return 0 == (raw_val & self.MSK_BIT_SCO)
+        return 0 == (raw_val & _MSK_BIT_SCO)
+
+    def set_iir_filter(self, coeff=None) -> int:
+        if coeff is None:
+            return 0
+        if 0 != coeff:
+            raise NotImplementedError("BMP180: аппаратный ФНЧ отсутствует")
+        return 0
+
+    def refresh_config(self):
+        """
+        Считывает регистр 0xF4 (CTRL_MEAS) и обновляет внутренний кэш.
+        Биты 7-6: OSS (oversampling pressure)
+        Бит 4:   MEAS (0=температура, 1=давление)
+        """
+        reg = self._connection.read_reg(_REG_CTRL, 1)[0]
+        self._oversample_press = (reg >> 6) & 0x03
+        self._temp_or_press = bool(reg & 0x10)  # 1 -> давление, 0 -> температура
