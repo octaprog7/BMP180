@@ -29,14 +29,21 @@ def _calibration_regs_addr() -> iter:
 
 
 class Bmp180(IBaseSensorEx, IDentifier, Iterator, IBMPCommon):
-    """Класс для работы с датчиком давления воздуха Bosch BMP180"""
+    """Класс для работы с датчиком давления воздуха Bosch BMP180.
+    BMP180 измеряет T и P строго последовательно. Расчёт давления
+    требует свежей температуры для компенсации (_B5). При включении обоих
+    каналов в set_channels(True, True) итератор __next__() отдаёт приоритет
+    давлению, а температуру считывает автоматически только при отсутствии
+    кэша _B5."""
 
     def __init__(self, adapter: bus_service.I2cAdapter, address: int = 0x77, oss=0b11):
         """i2c - объект класса I2C; oss (oversample_settings) (0..3) - точность измерения 0-грубо, но быстро,
         3-медленно, но точно; address - адрес датчика на шине."""
         self._connection = DeviceEx(adapter=adapter, address=address, big_byte_order=True)
         #
-        self._temp_or_press = True
+        self._ch_temp = True      # канал температуры включён по умолчанию
+        self._ch_press = True     # канал давления включён по умолчанию
+        #
         self._press4 = None  # for precalculate
         self._press3 = None  # for precalculate
         self._press2 = None  # for precalculate
@@ -47,10 +54,8 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator, IBMPCommon):
         self._B5 = None      # for precalculate
         #
         self._oversample_press = None
-        # self.set_oversample(oss)
         self.set_oversampling(temp=0, press=oss)
         # массив, хранящий калибровочные коэффициенты (11 штук)
-        # array storing calibration coefficients (11 elements)
         self._cfa = array.array("l")  # signed long elements
         # считываю калибровочные коэффициенты
         self._read_calibration_data()
@@ -156,10 +161,14 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator, IBMPCommon):
         1               8
         2               14
         3               26"""
+        measure_temp = False if self._ch_press else self._ch_temp
+        if not self._ch_press and not self._ch_temp:
+            return  # оба канала выключены
+
         loc_oss = self.set_oversampling(None, None).pressure
         start_conversion = 0b0010_0000   # bit 5 - запуск преобразования (1)
         bit_4_0 = _PRESSURE_MEAS  # измеряю давление
-        if self._temp_or_press:
+        if measure_temp:
             bit_4_0 = _TEMPERATURE_MEAS  # измеряю температуру
             loc_oss = 0  # обнуляю OSS при измерении температуры
         val = loc_oss << 6 | start_conversion | bit_4_0
@@ -224,22 +233,42 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator, IBMPCommon):
 
     """Call start_measurement(...) before call __next__ !!!"""
     def __next__(self) -> float | None:
-        """Для поддержки итераций. Возврат текущей температуры или давления"""
+        """Для поддержки итераций. Возврат текущей температуры или давления.
+        При включении обоих каналов приоритет отдаётся давлению."""
         if not self.get_data_status(False):
-            return None # данные не готовы!
-        _act_channels = self.set_channels(temp_en=None, press_en=None)
-        if _act_channels.temperature:
+            return None  # данные не готовы!
+
+        # Приоритет давлению
+        if self._ch_press:
+            if self._B5 is None:
+                self.get_temperature()  # авто-компенсация без прерывания итератора
+            return self.get_pressure()
+
+        if self._ch_temp:
             return self.get_temperature()
-        return self.get_pressure()
+
+        return None  # оба канала выключены
 
     def set_channels(self, temp_en, press_en) -> None | MeasChannels:
-        """Датчик не может одновременно измерять температуру И давление!
-        Только по очереди."""
+        """Включает/выключает каналы измерения температуры и давления.
+        Если оба параметра равны None -> метод работает как геттер и возвращает MeasChannels.
+        Датчик измеряет T и P строго по очереди (аппаратно нет параллельных АЦП).
+        Комбинация temp_en=False, press_en=True недопустима: расчёт давления требует
+        предварительного измерения температуры для компенсации.
+
+        Args:
+            temp_en (bool | None): Включить канал температуры. None = не менять.
+            press_en (bool | None): Включить канал давления. None = не менять.
+        Returns:
+            MeasChannels | None: Текущее состояние каналов, если вызван как геттер, иначе None.
+        """
         if temp_en is None and press_en is None:
             return MeasChannels(temperature=True, pressure=True)
-        if press_en is True and temp_en is False:
-            raise ValueError("BMP180: измерение давления невозможно без температуры!")
-        self._temp_or_press = temp_en
+        if temp_en is not None:
+            self._ch_temp = temp_en
+        if press_en is not None:
+            self._ch_press = press_en
+        #
         return None
 
     def set_oversampling(self, temp: int | None = None, press: int | None = None) -> None | OversamplingCoeff:
@@ -256,10 +285,8 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator, IBMPCommon):
         Для текущих настроек датчика. При изменении настроек следует заново вызвать этот метод!"""
         cct = _CONV_TIME_PRESS
         _os_p = self.set_oversampling(None,None).pressure
-        if self.set_channels(None, None).temperature:
-            return cct[0]    # temperature
-        # pressure
-        return cct[_os_p]
+        # Если включено давление, то время преобразования зависит от OSS, иначе фиксировано для T
+        return cct[_os_p] if self._ch_press else cct[0]
 
     def get_measurement_value(self, value_index: int) -> float:
         """Возвращает измеренное датчиком значение(значения) по его индексу/номеру.
@@ -302,11 +329,25 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator, IBMPCommon):
         return 0
 
     def refresh_config(self):
-        """
-        Считывает регистр 0xF4 (CTRL_MEAS) и обновляет внутренний кэш.
-        Биты 7-6: OSS (oversampling pressure)
-        Бит 4:   MEAS (0=температура, 1=давление)
+        """Перечитывает регистр управления 0xF4 (CTRL_MEAS) и синхронизирует внутренний кэш.
+
+        ВНИМАНИЕ: Вызывать ТОЛЬКО когда датчик завершил преобразование (бит SCO=0,
+        данные готовы). Вызов во время работы АЦП приведёт к чтению 'сырых' битов!
+
+        Преобразование аппаратных битов в программные флаги:
+            - Биты 7:6 -> OSS (точность давления)   -> self._oversample_press
+            - Бит 4    -> MEAS (тип след. измерения) -> self._ch_press (1) / self._ch_temp (0)
+
+        Безопасный вызов:
+            sensor.start_measurement()
+            while not sensor.get_data_status(raw=False): pass  # ждём SCO=0
+            sensor.refresh_config()
         """
         reg = self._connection.read_reg(_REG_CTRL, 1)[0]
         self._oversample_press = (reg >> 6) & 0x03
-        self._temp_or_press = bool(reg & 0x10)  # 1 -> давление, 0 -> температура
+
+        # Аппаратный регистр хранит только тип СЛЕДУЮЩЕГО измерения.
+        # Синхронизирую программные флаги с состоянием чипа:
+        is_pressure_next = bool(reg & 0x10)
+        self._ch_press = is_pressure_next
+        self._ch_temp = not is_pressure_next
