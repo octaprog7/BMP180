@@ -107,7 +107,7 @@ if __name__ == '__main__':
     print(f"chip_id: 0x{res:x}")
 
     print("Calibration data:")
-    print([ps.get_calibration_data(i) for i in range(11)])
+    print([ps.get_calibration(i) for i in range(11)])
 
     print(20 * "*_")
     print("Reading temperature in a cycle.")
@@ -129,30 +129,29 @@ if __name__ == '__main__':
         if press is None:
             continue
 
+        press_filtered = press
         # фильтрация старт
         if USE_FILTER:
             if FILTER_METHOD == 'ema':
-                press_filt = smooth_ema(press, ema_state, EMA_ALPHA)
-                ema_state = press_filt  # сохраняем состояние для следующего шага
+                press_filtered = smooth_ema(press, ema_state, EMA_ALPHA)
+                ema_state = press_filtered  # сохраняем состояние для следующего шага
             else:  # 'ma'
                 ema_history.append(press)
-                press_filt = smooth_ma(ema_history, MA_WINDOW)
+                press_filtered = smooth_ma(ema_history, MA_WINDOW)
                 if len(ema_history) > 16:  # ограничиваем рост памяти
                     ema_history.pop(0)
-        else:
-            press_filt = press
         # фильтрация стоп
 
         # Обновляем мин/макс по фильтрованному значению
-        min_press = min(press_filt, min_press)
-        max_press = max(press_filt, max_press)
+        min_press = min(press_filtered, min_press)
+        max_press = max(press_filtered, max_press)
 
         # Вывод: сырое и фильтрованное + конвертация
-        mmhg_raw = pa_to_unit(value_pa=press, unit=_unit)
-        mmhg_filt = pa_to_unit(value_pa=press_filt, unit=_unit)
+        mmhg_raw = pa_to_unit(value_pa=press_filtered, unit=_unit)
+        mmhg_filt = pa_to_unit(value_pa=press_filtered, unit=_unit)
 
         if USE_FILTER:
-            print(f"P: {press:.1f} Pa → {press_filt:.1f} Pa | {mmhg_filt:.3f} mmHg | min/max: {min_press:.1f}/{max_press:.1f} Pa")
+            print(f"P: {press:.1f} Pa → {press_filtered:.1f} Pa | {mmhg_filt:.3f} mmHg | min/max: {min_press:.1f}/{max_press:.1f} Pa")
         else:
             print(f"Air pressure: {press:.1f} Pa | {mmhg_raw:.3f} mmHg | min/max: {min_press:.1f}/{max_press:.1f} Pa")
 
