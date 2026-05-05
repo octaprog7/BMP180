@@ -68,7 +68,7 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator, IBMPCommon):
         check_value(value=index, valid_range=range(11), error_msg=f"Invalid index value: {index}")
 
     @micropython.native
-    def get_calibration(self, index: int) -> int:
+    def get_calibration(self, index: int | None) -> int:
         """возвращает калибровочный коэффициент по его индексу (0..10).
         returns the calibration coefficient by its index (0..10)"""
         if index is None:
