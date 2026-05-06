@@ -164,3 +164,7 @@ def height(pressure_pa, qnh_pa=101325):
 * Держать датчик в руке, дыхание и тепло исказят показания.
 * Игнорировать QNH, Ошибка до 250 метров.
 * Верить последнему знаку, округляй до целых.
+
+[![GitHub clones](https://img.shields.io/github/clone-count/octaprog7/BMP180?style=flat)](https://github.com/octaprog7/BMP180)
+[![MicroPython](https://img.shields.io/badge/MicroPython-v1.20+-blue)](https://micropython.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
