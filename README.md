@@ -4,12 +4,12 @@ Micropython module for BMP180 pressure&temperature sensor.
 ## [На русском](README_RU.md)
 
 # Warning
-Attention, ATtiny enthusiasts, masters of assembly and C! Warning: This project may cause you to experience uncontrollable fits of anger and rage!
+Attention, ATtiny enthusiasts, masters of assembly and C! This project may cause you to experience uncontrollable fits of anger and rage!
 The code is written in MicroPython and deliberately ignores the following bare-metal development principles:
 
-"Every byte counts" -> ~8 KB of RAM here? No problem.
-"Direct register access" -> set_*(...) here with foolproofing.
-"Counting cycles is mandatory" -> time.sleep_ms() here and let the hardware wait.
+    «Every byte counts» -> ~8 KB of RAM here? No problem.
+    «Direct register access» -> set_*(...) here with foolproofing.
+    «Counting cycles is mandatory» -> time.sleep_ms() here and let the hardware wait.
 
 If you've just experienced a fit of rage, congratulations, you've come to the right place.
 But if you need speed, reliability, and a unified API for BMP180/280/390, welcome to a world where code reads like a book.
