@@ -11,7 +11,7 @@
 """
 
 from collections import namedtuple
-from sensor_pack_2.base_sensor import IBaseSensorEx, IDentifier, DeviceEx
+from sensor_pack_2.base_sensor import IBaseSensorEx, IDentifier
 
 # настройки oversampling (int, int)
 OversamplingCoeff = namedtuple("OversamplingCoeff", "temperature pressure")
