@@ -11,6 +11,8 @@
 """
 
 from collections import namedtuple
+from sensor_pack_2.base_sensor import IBaseSensorEx, IDentifier, DeviceEx
+
 # настройки oversampling (int, int)
 OversamplingCoeff = namedtuple("OversamplingCoeff", "temperature pressure")
 # возвращает активность каналов измерения (Истина->канал активен)
@@ -101,3 +103,8 @@ class IBMPCommon:
             int: Фактический период в [мс] или ближайший поддерживаемый.
         """
         raise NotImplementedError()
+
+
+class IBaseAirPresSensor(IBaseSensorEx, IDentifier, IBMPCommon):
+    """Интерфейс для всех барометрических датчиков Bosch и не только их."""
+    pass
