@@ -321,12 +321,11 @@ class Bmp180(IBaseSensorEx, IDentifier, Iterator, IBMPCommon):
             return raw_val
         return 0 == (raw_val & _MSK_BIT_SCO)
 
-    def set_iir_filter(self, coeff=None) -> int:
-        if coeff is None:
-            return 0
-        if 0 != coeff:
-            raise NotImplementedError("BMP180: аппаратный ФНЧ отсутствует")
-        return 0
+    def set_iir_filter(self, temp: int | None = None, press: int | None = None) -> tuple[int, int]:
+        """BMP180 не имеет аппаратного ФНЧ. Любая попытка записи вызывает ошибку."""
+        if temp is not None or press is not None:
+            raise NotImplementedError("BMP180: аппаратный IIR фильтр отсутствует")
+        return 0, 0  # всегда возвращает "выключено"
 
     def refresh_config(self):
         """Перечитывает регистр управления 0xF4 (CTRL_MEAS) и синхронизирует внутренний кэш.
