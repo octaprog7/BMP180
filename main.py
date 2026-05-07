@@ -7,6 +7,7 @@ import bmp180
 from machine import I2C, Pin
 from micropython import const
 from sensor_pack_2.bus_service import I2cAdapter
+# from sensor_pack_2.bmp_common import MeasuredParams
 
 # преобразование и фильтрация давления
 def pa_to_unit(value_pa: float, unit: str = 'hpa') -> float:
@@ -136,21 +137,30 @@ if __name__ == '__main__':
     min_press, max_press, average_press = 1E6, 0.0, 0.0
     _unit = 'mmhg'
     print(20 * "*_")
-    print("Reading pressure using an iterator!")
-    for index, press in enumerate(ps):
-        if press is None:
-            continue
+    print("Reading pressure without using an iterator!")
+    none_iters = 0
+    for index in range(ITERATIONS):
+        ps.start_measurement()  # 1. Запуск аппаратного преобразования
+        delay = ps.get_conversion_cycle_time()
+        time.sleep_ms(delay)  # 2. Базовая задержка
 
+        # Страховочный опрос
+        while not ps.get_data_status(raw=False):
+            time.sleep_ms(1)
+
+        press = ps.get_pressure()
         press_filtered = press
+
         # фильтрация старт
         if USE_FILTER:
             if FILTER_METHOD == 'ema':
                 press_filtered = smooth_ema(press, ema_state, EMA_ALPHA)
                 ema_state = press_filtered  # сохраняем состояние для следующего шага
             else:  # 'ma'
+                ema_state = None
                 ema_history.append(press)
                 press_filtered = smooth_ma(ema_history, MA_WINDOW)
-                if len(ema_history) > 16:  # ограничиваем рост памяти
+                if len(ema_history) > max(MA_WINDOW * 2, 32):  # ограничиваем рост памяти
                     ema_history.pop(0)
         # фильтрация стоп
 
@@ -164,7 +174,4 @@ if __name__ == '__main__':
 
         label = "->" if USE_FILTER else "|"
         print(f"Air pressure: {press:.1f} Pa {label} {press_filtered:.1f} Pa | {mmhg_filt:.3f} mmHg | min/max: {min_press:.1f}/{max_press:.1f} Pa")
-
-        time.sleep_ms(delay)  # delay for pressure measurement
-        ps.start_measurement()
 
