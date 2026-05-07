@@ -41,11 +41,21 @@ class IBMPCommon:
         """
         raise NotImplementedError()
 
-    def set_iir_filter(self, coeff: int | None):
-        """
-        Устанавливает коэффициент ФНЧ (int, 0..N).
-        Возвращает фактическое значение (int), если coeff в None.
-        Бросает NotImplementedError, если не поддерживается.
+    def set_iir_filter(self, temp: int | None = None, press: int | None = None) -> tuple[int, int]:
+        """Устанавливает коэффициенты ФНЧ для давления и/или температуры.
+
+        - Если оба параметра None -> читает и возвращает текущие значения (temp_iir, press_iir)
+        - Если передан хотя бы один параметр -> записывает и возвращает подтверждённые значения
+
+        Args:
+            press (int | None): Коэффициент для давления (0..N). 0=off, N=max. None = не менять.
+            temp (int | None): Коэффициент для температуры (0..N). None = не менять.
+
+        Returns:
+            tuple[int, int]: (temp_iir, press_iir) — фактические значения из регистра.
+
+        Raises:
+            NotImplementedError: Если датчик не поддерживает ФНЧ.
         """
         raise NotImplementedError()
 
