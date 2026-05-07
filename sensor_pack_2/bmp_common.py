@@ -15,6 +15,7 @@ from collections import namedtuple
 OversamplingCoeff = namedtuple("OversamplingCoeff", "temperature pressure")
 # возвращает активность каналов измерения (Истина->канал активен)
 MeasChannels = namedtuple("MeasChannels", "temperature pressure")
+MeasuredParams = namedtuple("MeasuredParams", "temperature pressure")
 
 class IBMPCommon:
     """
@@ -68,4 +69,35 @@ class IBMPCommon:
 
     def refresh_config(self):
         """Перечитывает настройки из регистров датчика во внутренний кэш."""
+        raise NotImplementedError()
+
+    def set_power_mode(self, value: int | None = None) -> int:
+        """Устанавливает или возвращает текущий режим питания.
+
+        Стандартная маппинг режимов для всех датчиков серии BMP:
+            0: Sleep / Standby (Сон)
+            1: Forced (Однократное измерение по запросу)
+            2: Normal (Периодическое непрерывное измерение)
+            3: Continuous (Непрерывное на макс. частоте - опционально, только BMP581)
+
+        Args:
+            value (int | None): Код режима. None = прочитать текущее состояние.
+
+        Returns:
+            int: значение режима из регистра.
+
+        Raises:
+            ValueError: Если значение не входит в допустимый диапазон для конкретного датчика.
+        """
+        raise NotImplementedError()
+
+    def set_sampling_period(self, value: int | None = None) -> int:
+        """Устанавливает или возвращает период дискретизации (ODR).
+
+        Args:
+            value (int | None): Период в [мс]. None = прочитать текущее значение.
+
+        Returns:
+            int: Фактический период в [мс] или ближайший поддерживаемый.
+        """
         raise NotImplementedError()
