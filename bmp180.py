@@ -6,8 +6,8 @@ from micropython import const
 import array
 
 from sensor_pack_2 import bus_service
-from sensor_pack_2.base_sensor import IBaseSensorEx, IDentifier, DeviceEx, check_value
-from sensor_pack_2.bmp_common import IBMPCommon, OversamplingCoeff, MeasChannels, MeasuredParams
+from sensor_pack_2.base_sensor import DeviceEx, check_value
+from sensor_pack_2.bmp_common import IBaseAirPresSensor, OversamplingCoeff, MeasChannels
 
 # ВНИМАНИЕ: не подключайте питание датчика к 5В, иначе датчик выйдет из строя! Только 3.3В!!!
 # WARNING: do not connect "+" to 5V or the sensor will be damaged!
@@ -28,7 +28,7 @@ def _calibration_regs_addr() -> iter:
     return range(0xAA, 0xBF, 2)
 
 
-class Bmp180(IBaseSensorEx, IDentifier, IBMPCommon):
+class Bmp180(IBaseAirPresSensor):
     """Класс для работы с датчиком давления воздуха Bosch BMP180.
     BMP180 измеряет T и P строго последовательно. Расчёт давления
     требует свежей температуры для компенсации (_B5). При включении обоих
@@ -233,23 +233,6 @@ class Bmp180(IBaseSensorEx, IDentifier, IBMPCommon):
 
         return curr_pressure + 6.25E-2 * (x1 + x2 + 3791)
 
-#    """Call start_measurement(...) before call __next__ !!!"""
-#    def __next__(self) -> MeasuredParams | None:
-#        """Для поддержки итераций. Возврат текущей температуры или давления.
-#        При включении обоих каналов приоритет отдаётся давлению."""
-#        if not self.get_data_status(False):
-#            return None  # данные не готовы!
-
-#        # Приоритет давлению
-#        if self._ch_press:
-#            if self._B5 is None:
-#                self.get_temperature()  # авто-компенсация без прерывания итератора
-#            return MeasuredParams(temperature=None,  pressure=self.get_pressure())
-
-#        if self._ch_temp:
-#            return MeasuredParams(temperature=self.get_temperature(), pressure=None)
-
-#        return None  # оба канала выключены
 
     def set_channels(self, temp_en, press_en) -> None | MeasChannels:
         """Управляет программной логикой выбора измерений.
