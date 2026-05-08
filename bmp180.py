@@ -7,7 +7,7 @@ import array
 
 from sensor_pack_2 import bus_service
 from sensor_pack_2.base_sensor import DeviceEx, check_value
-from sensor_pack_2.bmp_common import IBaseAirPresSensor, OversamplingCoeff, MeasChannels
+from sensor_pack_2.bmp_common import IBaseAirPresSensor, OversamplingCoeff, MeasChannels, SensorID
 
 # ВНИМАНИЕ: не подключайте питание датчика к 5В, иначе датчик выйдет из строя! Только 3.3В!!!
 # WARNING: do not connect "+" to 5V or the sensor will be damaged!
@@ -137,12 +137,12 @@ class Bmp180(IBaseAirPresSensor):
             self._cfa.append(rv)
         return len(self._cfa)
 
-    def get_id(self) -> int:
+    def get_id(self) -> SensorID:
         """Возвращает идентификатор датчика. Правильное значение - 0х55.
         Returns the ID of the sensor. The correct value is 0x55."""
         conn = self._connection
         res = conn.read_reg(_REG_ID, 1)
-        return int(res[0])
+        return SensorID(int(res[0]), None, None, None)
 
     def soft_reset(self):
         """программный сброс датчика.
