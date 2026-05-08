@@ -1,205 +1,205 @@
-chip_id: 0x55
+chip_id: SensorID(chip_id=85, revision_id=None, spare1=None, spare2=None)
 Calibration data:
 [7315, -1145, -14522, 34195, 25244, 18552, 6515, 44, -32768, -11786, 2671]
 *_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_
 Reading temperature in a cycle.
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.7389 ° С	Delay: 5 [ms]
-Air temperature: 26.7389 ° С	Delay: 5 [ms]
-Air temperature: 26.7389 ° С	Delay: 5 [ms]
-Air temperature: 26.745 ° С	Delay: 5 [ms]
-Air temperature: 26.73279 ° С	Delay: 5 [ms]
-Air temperature: 26.7389 ° С	Delay: 5 [ms]
-Air temperature: 26.7389 ° С	Delay: 5 [ms]
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.7389 ° С	Delay: 5 [ms]
-Air temperature: 26.7389 ° С	Delay: 5 [ms]
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.7389 ° С	Delay: 5 [ms]
-Air temperature: 26.7389 ° С	Delay: 5 [ms]
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.745 ° С	Delay: 5 [ms]
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.745 ° С	Delay: 5 [ms]
-Air temperature: 26.75722 ° С	Delay: 5 [ms]
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.75722 ° С	Delay: 5 [ms]
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.745 ° С	Delay: 5 [ms]
-Air temperature: 26.75722 ° С	Delay: 5 [ms]
-Air temperature: 26.75722 ° С	Delay: 5 [ms]
-Air temperature: 26.76332 ° С	Delay: 5 [ms]
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.75722 ° С	Delay: 5 [ms]
-Air temperature: 26.76332 ° С	Delay: 5 [ms]
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.76332 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.75722 ° С	Delay: 5 [ms]
-Air temperature: 26.76332 ° С	Delay: 5 [ms]
-Air temperature: 26.76332 ° С	Delay: 5 [ms]
-Air temperature: 26.76332 ° С	Delay: 5 [ms]
-Air temperature: 26.76332 ° С	Delay: 5 [ms]
-Air temperature: 26.76943 ° С	Delay: 5 [ms]
-Air temperature: 26.75111 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.75722 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.76943 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.78164 ° С	Delay: 5 [ms]
-Air temperature: 26.78164 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.76332 ° С	Delay: 5 [ms]
-Air temperature: 26.79996 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.78164 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.78164 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.77554 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.78774 ° С	Delay: 5 [ms]
-Air temperature: 26.79385 ° С	Delay: 5 [ms]
-Air temperature: 26.79385 ° С	Delay: 5 [ms]
-Air temperature: 26.79385 ° С	Delay: 5 [ms]
-Air temperature: 26.79385 ° С	Delay: 5 [ms]
-Air temperature: 26.79996 ° С	Delay: 5 [ms]
-Air temperature: 26.79996 ° С	Delay: 5 [ms]
-Air temperature: 26.79996 ° С	Delay: 5 [ms]
-Air temperature: 26.80606 ° С	Delay: 5 [ms]
-Air temperature: 26.79996 ° С	Delay: 5 [ms]
-Air temperature: 26.79996 ° С	Delay: 5 [ms]
-Air temperature: 26.80606 ° С	Delay: 5 [ms]
-Air temperature: 26.79385 ° С	Delay: 5 [ms]
-Air temperature: 26.80606 ° С	Delay: 5 [ms]
-Air temperature: 26.79996 ° С	Delay: 5 [ms]
-Air temperature: 26.79996 ° С	Delay: 5 [ms]
-Air temperature: 26.79996 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.93099 ° С	Delay: 5 [ms]
+Air temperature: 25.92486 ° С	Delay: 5 [ms]
+Air temperature: 25.93099 ° С	Delay: 5 [ms]
+Air temperature: 25.93099 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.93712 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.95552 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.93712 ° С	Delay: 5 [ms]
+Air temperature: 25.93099 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.96166 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.96166 ° С	Delay: 5 [ms]
+Air temperature: 25.96166 ° С	Delay: 5 [ms]
+Air temperature: 25.95552 ° С	Delay: 5 [ms]
+Air temperature: 25.96166 ° С	Delay: 5 [ms]
+Air temperature: 25.95552 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.94326 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.96166 ° С	Delay: 5 [ms]
+Air temperature: 25.95552 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.96166 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.96166 ° С	Delay: 5 [ms]
+Air temperature: 25.95552 ° С	Delay: 5 [ms]
+Air temperature: 25.96166 ° С	Delay: 5 [ms]
+Air temperature: 25.96166 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.9494 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.96166 ° С	Delay: 5 [ms]
+Air temperature: 25.95552 ° С	Delay: 5 [ms]
+Air temperature: 25.95552 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.98006 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.98006 ° С	Delay: 5 [ms]
+Air temperature: 25.96166 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.96166 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.98006 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.98006 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.98006 ° С	Delay: 5 [ms]
+Air temperature: 25.98006 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.98006 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.96779 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
+Air temperature: 25.97393 ° С	Delay: 5 [ms]
 *_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_
 Reading pressure without using an iterator!
-Air pressure: 98999.1 Pa | 98999.1 Pa | 742.554 mmHg | min/max: 98999.1/98999.1 Pa
-Air pressure: 98998.0 Pa | 98998.0 Pa | 742.546 mmHg | min/max: 98998.0/98999.1 Pa
-Air pressure: 98999.8 Pa | 98999.8 Pa | 742.560 mmHg | min/max: 98998.0/98999.8 Pa
-Air pressure: 98993.2 Pa | 98993.2 Pa | 742.510 mmHg | min/max: 98993.2/98999.8 Pa
-Air pressure: 98989.5 Pa | 98989.5 Pa | 742.482 mmHg | min/max: 98989.5/98999.8 Pa
-Air pressure: 98989.2 Pa | 98989.2 Pa | 742.480 mmHg | min/max: 98989.2/98999.8 Pa
-Air pressure: 98991.8 Pa | 98991.8 Pa | 742.499 mmHg | min/max: 98989.2/98999.8 Pa
-Air pressure: 98989.9 Pa | 98989.9 Pa | 742.485 mmHg | min/max: 98989.2/98999.8 Pa
-Air pressure: 98988.1 Pa | 98988.1 Pa | 742.471 mmHg | min/max: 98988.1/98999.8 Pa
-Air pressure: 98988.4 Pa | 98988.4 Pa | 742.474 mmHg | min/max: 98988.1/98999.8 Pa
-Air pressure: 98994.7 Pa | 98994.7 Pa | 742.521 mmHg | min/max: 98988.1/98999.8 Pa
-Air pressure: 98988.4 Pa | 98988.4 Pa | 742.474 mmHg | min/max: 98988.1/98999.8 Pa
-Air pressure: 98985.9 Pa | 98985.9 Pa | 742.455 mmHg | min/max: 98985.9/98999.8 Pa
-Air pressure: 98994.3 Pa | 98994.3 Pa | 742.518 mmHg | min/max: 98985.9/98999.8 Pa
-Air pressure: 98987.3 Pa | 98987.3 Pa | 742.466 mmHg | min/max: 98985.9/98999.8 Pa
-Air pressure: 98990.6 Pa | 98990.6 Pa | 742.491 mmHg | min/max: 98985.9/98999.8 Pa
-Air pressure: 98981.1 Pa | 98981.1 Pa | 742.419 mmHg | min/max: 98981.1/98999.8 Pa
-Air pressure: 98981.8 Pa | 98981.8 Pa | 742.425 mmHg | min/max: 98981.1/98999.8 Pa
-Air pressure: 98980.7 Pa | 98980.7 Pa | 742.416 mmHg | min/max: 98980.7/98999.8 Pa
-Air pressure: 98980.0 Pa | 98980.0 Pa | 742.411 mmHg | min/max: 98980.0/98999.8 Pa
-Air pressure: 98977.4 Pa | 98977.4 Pa | 742.391 mmHg | min/max: 98977.4/98999.8 Pa
-Air pressure: 98980.3 Pa | 98980.3 Pa | 742.414 mmHg | min/max: 98977.4/98999.8 Pa
-Air pressure: 98978.1 Pa | 98978.1 Pa | 742.397 mmHg | min/max: 98977.4/98999.8 Pa
-Air pressure: 98974.8 Pa | 98974.8 Pa | 742.372 mmHg | min/max: 98974.8/98999.8 Pa
-Air pressure: 98979.3 Pa | 98979.3 Pa | 742.405 mmHg | min/max: 98974.8/98999.8 Pa
-Air pressure: 98981.5 Pa | 98981.5 Pa | 742.422 mmHg | min/max: 98974.8/98999.8 Pa
-Air pressure: 98993.2 Pa | 98993.2 Pa | 742.510 mmHg | min/max: 98974.8/98999.8 Pa
-Air pressure: 99032.5 Pa | 99032.5 Pa | 742.805 mmHg | min/max: 98974.8/99032.5 Pa
-Air pressure: 98997.3 Pa | 98997.3 Pa | 742.540 mmHg | min/max: 98974.8/99032.5 Pa
-Air pressure: 99007.9 Pa | 99007.9 Pa | 742.620 mmHg | min/max: 98974.8/99032.5 Pa
-Air pressure: 99002.8 Pa | 99002.8 Pa | 742.582 mmHg | min/max: 98974.8/99032.5 Pa
-Air pressure: 99007.9 Pa | 99007.9 Pa | 742.620 mmHg | min/max: 98974.8/99032.5 Pa
-Air pressure: 98992.5 Pa | 98992.5 Pa | 742.505 mmHg | min/max: 98974.8/99032.5 Pa
-Air pressure: 98983.3 Pa | 98983.3 Pa | 742.436 mmHg | min/max: 98974.8/99032.5 Pa
-Air pressure: 98974.8 Pa | 98974.8 Pa | 742.372 mmHg | min/max: 98974.8/99032.5 Pa
-Air pressure: 98971.9 Pa | 98971.9 Pa | 742.350 mmHg | min/max: 98971.9/99032.5 Pa
-Air pressure: 98967.8 Pa | 98967.8 Pa | 742.320 mmHg | min/max: 98967.8/99032.5 Pa
-Air pressure: 98972.3 Pa | 98972.3 Pa | 742.353 mmHg | min/max: 98967.8/99032.5 Pa
-Air pressure: 98964.9 Pa | 98964.9 Pa | 742.298 mmHg | min/max: 98964.9/99032.5 Pa
-Air pressure: 98962.3 Pa | 98962.3 Pa | 742.278 mmHg | min/max: 98962.3/99032.5 Pa
-Air pressure: 98964.2 Pa | 98964.2 Pa | 742.292 mmHg | min/max: 98962.3/99032.5 Pa
-Air pressure: 98969.0 Pa | 98969.0 Pa | 742.328 mmHg | min/max: 98962.3/99032.5 Pa
-Air pressure: 99005.7 Pa | 99005.7 Pa | 742.604 mmHg | min/max: 98962.3/99032.5 Pa
-Air pressure: 99010.1 Pa | 99010.1 Pa | 742.637 mmHg | min/max: 98962.3/99032.5 Pa
-Air pressure: 99004.2 Pa | 99004.2 Pa | 742.593 mmHg | min/max: 98962.3/99032.5 Pa
-Air pressure: 98975.9 Pa | 98975.9 Pa | 742.380 mmHg | min/max: 98962.3/99032.5 Pa
-Air pressure: 98971.2 Pa | 98971.2 Pa | 742.345 mmHg | min/max: 98962.3/99032.5 Pa
-Air pressure: 98950.9 Pa | 98950.9 Pa | 742.193 mmHg | min/max: 98950.9/99032.5 Pa
-Air pressure: 98946.5 Pa | 98946.5 Pa | 742.160 mmHg | min/max: 98946.5/99032.5 Pa
-Air pressure: 98945.1 Pa | 98945.1 Pa | 742.149 mmHg | min/max: 98945.1/99032.5 Pa
-Air pressure: 98942.5 Pa | 98942.5 Pa | 742.130 mmHg | min/max: 98942.5/99032.5 Pa
-Air pressure: 98941.4 Pa | 98941.4 Pa | 742.121 mmHg | min/max: 98941.4/99032.5 Pa
-Air pressure: 98938.8 Pa | 98938.8 Pa | 742.102 mmHg | min/max: 98938.8/99032.5 Pa
-Air pressure: 98945.8 Pa | 98945.8 Pa | 742.154 mmHg | min/max: 98938.8/99032.5 Pa
-Air pressure: 98932.6 Pa | 98932.6 Pa | 742.055 mmHg | min/max: 98932.6/99032.5 Pa
-Air pressure: 98934.8 Pa | 98934.8 Pa | 742.072 mmHg | min/max: 98932.6/99032.5 Pa
-Air pressure: 98931.8 Pa | 98931.8 Pa | 742.050 mmHg | min/max: 98931.8/99032.5 Pa
-Air pressure: 98929.6 Pa | 98929.6 Pa | 742.033 mmHg | min/max: 98929.6/99032.5 Pa
-Air pressure: 98931.8 Pa | 98931.8 Pa | 742.050 mmHg | min/max: 98929.6/99032.5 Pa
-Air pressure: 98930.0 Pa | 98930.0 Pa | 742.036 mmHg | min/max: 98929.6/99032.5 Pa
-Air pressure: 98934.4 Pa | 98934.4 Pa | 742.069 mmHg | min/max: 98929.6/99032.5 Pa
-Air pressure: 98932.6 Pa | 98932.6 Pa | 742.055 mmHg | min/max: 98929.6/99032.5 Pa
-Air pressure: 98988.8 Pa | 98988.8 Pa | 742.477 mmHg | min/max: 98929.6/99032.5 Pa
-Air pressure: 98977.4 Pa | 98977.4 Pa | 742.391 mmHg | min/max: 98929.6/99032.5 Pa
-Air pressure: 98979.3 Pa | 98979.3 Pa | 742.405 mmHg | min/max: 98929.6/99032.5 Pa
-Air pressure: 98966.4 Pa | 98966.4 Pa | 742.309 mmHg | min/max: 98929.6/99032.5 Pa
-Air pressure: 98938.1 Pa | 98938.1 Pa | 742.096 mmHg | min/max: 98929.6/99032.5 Pa
-Air pressure: 98934.4 Pa | 98934.4 Pa | 742.069 mmHg | min/max: 98929.6/99032.5 Pa
-Air pressure: 98928.2 Pa | 98928.2 Pa | 742.022 mmHg | min/max: 98928.2/99032.5 Pa
-Air pressure: 98927.8 Pa | 98927.8 Pa | 742.019 mmHg | min/max: 98927.8/99032.5 Pa
-Air pressure: 98922.6 Pa | 98922.6 Pa | 741.981 mmHg | min/max: 98922.6/99032.5 Pa
-Air pressure: 98917.1 Pa | 98917.1 Pa | 741.939 mmHg | min/max: 98917.1/99032.5 Pa
-Air pressure: 98923.4 Pa | 98923.4 Pa | 741.986 mmHg | min/max: 98917.1/99032.5 Pa
-Air pressure: 98918.2 Pa | 98918.2 Pa | 741.948 mmHg | min/max: 98917.1/99032.5 Pa
-Air pressure: 98919.7 Pa | 98919.7 Pa | 741.959 mmHg | min/max: 98917.1/99032.5 Pa
-Air pressure: 98913.5 Pa | 98913.5 Pa | 741.912 mmHg | min/max: 98913.5/99032.5 Pa
-Air pressure: 98912.7 Pa | 98912.7 Pa | 741.906 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98915.3 Pa | 98915.3 Pa | 741.926 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98912.7 Pa | 98912.7 Pa | 741.906 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98916.8 Pa | 98916.8 Pa | 741.937 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98915.7 Pa | 98915.7 Pa | 741.928 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98920.1 Pa | 98920.1 Pa | 741.961 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98920.1 Pa | 98920.1 Pa | 741.961 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98914.9 Pa | 98914.9 Pa | 741.923 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98917.5 Pa | 98917.5 Pa | 741.942 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98920.1 Pa | 98920.1 Pa | 741.961 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98914.5 Pa | 98914.5 Pa | 741.920 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98920.1 Pa | 98920.1 Pa | 741.961 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98916.0 Pa | 98916.0 Pa | 741.931 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98920.1 Pa | 98920.1 Pa | 741.961 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98917.1 Pa | 98917.1 Pa | 741.939 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98920.4 Pa | 98920.4 Pa | 741.964 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98920.1 Pa | 98920.1 Pa | 741.961 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98922.3 Pa | 98922.3 Pa | 741.978 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98921.2 Pa | 98921.2 Pa | 741.970 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98919.3 Pa | 98919.3 Pa | 741.956 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98914.9 Pa | 98914.9 Pa | 741.923 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98917.5 Pa | 98917.5 Pa | 741.942 mmHg | min/max: 98912.7/99032.5 Pa
-Air pressure: 98920.8 Pa | 98920.8 Pa | 741.967 mmHg | min/max: 98912.7/99032.5 Pa
+Air pressure: 98546.9 Pa | 98546.9 Pa | 739.162 mmHg | min/max: 98546.9/98546.9 Pa
+Air pressure: 98545.0 Pa | 98545.0 Pa | 739.148 mmHg | min/max: 98545.0/98546.9 Pa
+Air pressure: 98538.4 Pa | 98538.4 Pa | 739.099 mmHg | min/max: 98538.4/98546.9 Pa
+Air pressure: 98539.9 Pa | 98539.9 Pa | 739.110 mmHg | min/max: 98538.4/98546.9 Pa
+Air pressure: 98544.3 Pa | 98544.3 Pa | 739.143 mmHg | min/max: 98538.4/98546.9 Pa
+Air pressure: 98538.8 Pa | 98538.8 Pa | 739.102 mmHg | min/max: 98538.4/98546.9 Pa
+Air pressure: 98533.3 Pa | 98533.3 Pa | 739.060 mmHg | min/max: 98533.3/98546.9 Pa
+Air pressure: 98533.3 Pa | 98533.3 Pa | 739.060 mmHg | min/max: 98533.3/98546.9 Pa
+Air pressure: 98531.8 Pa | 98531.8 Pa | 739.049 mmHg | min/max: 98531.8/98546.9 Pa
+Air pressure: 98539.9 Pa | 98539.9 Pa | 739.110 mmHg | min/max: 98531.8/98546.9 Pa
+Air pressure: 98535.1 Pa | 98535.1 Pa | 739.074 mmHg | min/max: 98531.8/98546.9 Pa
+Air pressure: 98532.6 Pa | 98532.6 Pa | 739.055 mmHg | min/max: 98531.8/98546.9 Pa
+Air pressure: 98529.6 Pa | 98529.6 Pa | 739.033 mmHg | min/max: 98529.6/98546.9 Pa
+Air pressure: 98533.3 Pa | 98533.3 Pa | 739.060 mmHg | min/max: 98529.6/98546.9 Pa
+Air pressure: 98534.8 Pa | 98534.8 Pa | 739.071 mmHg | min/max: 98529.6/98546.9 Pa
+Air pressure: 98535.5 Pa | 98535.5 Pa | 739.077 mmHg | min/max: 98529.6/98546.9 Pa
+Air pressure: 98527.8 Pa | 98527.8 Pa | 739.019 mmHg | min/max: 98527.8/98546.9 Pa
+Air pressure: 98527.1 Pa | 98527.1 Pa | 739.014 mmHg | min/max: 98527.1/98546.9 Pa
+Air pressure: 98525.6 Pa | 98525.6 Pa | 739.003 mmHg | min/max: 98525.6/98546.9 Pa
+Air pressure: 98529.6 Pa | 98529.6 Pa | 739.033 mmHg | min/max: 98525.6/98546.9 Pa
+Air pressure: 98528.5 Pa | 98528.5 Pa | 739.024 mmHg | min/max: 98525.6/98546.9 Pa
+Air pressure: 98535.1 Pa | 98535.1 Pa | 739.074 mmHg | min/max: 98525.6/98546.9 Pa
+Air pressure: 98534.8 Pa | 98534.8 Pa | 739.071 mmHg | min/max: 98525.6/98546.9 Pa
+Air pressure: 98531.5 Pa | 98531.5 Pa | 739.047 mmHg | min/max: 98525.6/98546.9 Pa
+Air pressure: 98528.1 Pa | 98528.1 Pa | 739.022 mmHg | min/max: 98525.6/98546.9 Pa
+Air pressure: 98524.1 Pa | 98524.1 Pa | 738.991 mmHg | min/max: 98524.1/98546.9 Pa
+Air pressure: 98523.4 Pa | 98523.4 Pa | 738.986 mmHg | min/max: 98523.4/98546.9 Pa
+Air pressure: 98525.6 Pa | 98525.6 Pa | 739.003 mmHg | min/max: 98523.4/98546.9 Pa
+Air pressure: 98537.7 Pa | 98537.7 Pa | 739.093 mmHg | min/max: 98523.4/98546.9 Pa
+Air pressure: 98530.7 Pa | 98530.7 Pa | 739.041 mmHg | min/max: 98523.4/98546.9 Pa
+Air pressure: 98531.5 Pa | 98531.5 Pa | 739.047 mmHg | min/max: 98523.4/98546.9 Pa
+Air pressure: 98543.2 Pa | 98543.2 Pa | 739.135 mmHg | min/max: 98523.4/98546.9 Pa
+Air pressure: 98554.2 Pa | 98554.2 Pa | 739.217 mmHg | min/max: 98523.4/98554.2 Pa
+Air pressure: 98561.5 Pa | 98561.5 Pa | 739.272 mmHg | min/max: 98523.4/98561.5 Pa
+Air pressure: 98537.0 Pa | 98537.0 Pa | 739.088 mmHg | min/max: 98523.4/98561.5 Pa
+Air pressure: 98528.5 Pa | 98528.5 Pa | 739.024 mmHg | min/max: 98523.4/98561.5 Pa
+Air pressure: 98525.2 Pa | 98525.2 Pa | 739.000 mmHg | min/max: 98523.4/98561.5 Pa
+Air pressure: 98527.8 Pa | 98527.8 Pa | 739.019 mmHg | min/max: 98523.4/98561.5 Pa
+Air pressure: 98520.8 Pa | 98520.8 Pa | 738.967 mmHg | min/max: 98520.8/98561.5 Pa
+Air pressure: 98515.7 Pa | 98515.7 Pa | 738.928 mmHg | min/max: 98515.7/98561.5 Pa
+Air pressure: 98522.3 Pa | 98522.3 Pa | 738.978 mmHg | min/max: 98515.7/98561.5 Pa
+Air pressure: 98515.3 Pa | 98515.3 Pa | 738.925 mmHg | min/max: 98515.3/98561.5 Pa
+Air pressure: 98517.9 Pa | 98517.9 Pa | 738.945 mmHg | min/max: 98515.3/98561.5 Pa
+Air pressure: 98516.4 Pa | 98516.4 Pa | 738.934 mmHg | min/max: 98515.3/98561.5 Pa
+Air pressure: 98513.1 Pa | 98513.1 Pa | 738.909 mmHg | min/max: 98513.1/98561.5 Pa
+Air pressure: 98513.1 Pa | 98513.1 Pa | 738.909 mmHg | min/max: 98513.1/98561.5 Pa
+Air pressure: 98515.7 Pa | 98515.7 Pa | 738.928 mmHg | min/max: 98513.1/98561.5 Pa
+Air pressure: 98509.8 Pa | 98509.8 Pa | 738.884 mmHg | min/max: 98509.8/98561.5 Pa
+Air pressure: 98508.3 Pa | 98508.3 Pa | 738.873 mmHg | min/max: 98508.3/98561.5 Pa
+Air pressure: 98505.0 Pa | 98505.0 Pa | 738.848 mmHg | min/max: 98505.0/98561.5 Pa
+Air pressure: 98503.2 Pa | 98503.2 Pa | 738.835 mmHg | min/max: 98503.2/98561.5 Pa
+Air pressure: 98520.4 Pa | 98520.4 Pa | 738.964 mmHg | min/max: 98503.2/98561.5 Pa
+Air pressure: 98508.0 Pa | 98508.0 Pa | 738.870 mmHg | min/max: 98503.2/98561.5 Pa
+Air pressure: 98504.7 Pa | 98504.7 Pa | 738.846 mmHg | min/max: 98503.2/98561.5 Pa
+Air pressure: 98509.1 Pa | 98509.1 Pa | 738.879 mmHg | min/max: 98503.2/98561.5 Pa
+Air pressure: 98509.1 Pa | 98509.1 Pa | 738.879 mmHg | min/max: 98503.2/98561.5 Pa
+Air pressure: 98507.2 Pa | 98507.2 Pa | 738.865 mmHg | min/max: 98503.2/98561.5 Pa
+Air pressure: 98505.8 Pa | 98505.8 Pa | 738.854 mmHg | min/max: 98503.2/98561.5 Pa
+Air pressure: 98508.0 Pa | 98508.0 Pa | 738.870 mmHg | min/max: 98503.2/98561.5 Pa
+Air pressure: 98506.1 Pa | 98506.1 Pa | 738.857 mmHg | min/max: 98503.2/98561.5 Pa
+Air pressure: 98497.7 Pa | 98497.7 Pa | 738.793 mmHg | min/max: 98497.7/98561.5 Pa
+Air pressure: 98497.0 Pa | 98497.0 Pa | 738.788 mmHg | min/max: 98497.0/98561.5 Pa
+Air pressure: 98490.4 Pa | 98490.4 Pa | 738.738 mmHg | min/max: 98490.4/98561.5 Pa
+Air pressure: 98505.4 Pa | 98505.4 Pa | 738.851 mmHg | min/max: 98490.4/98561.5 Pa
+Air pressure: 98500.6 Pa | 98500.6 Pa | 738.815 mmHg | min/max: 98490.4/98561.5 Pa
+Air pressure: 98494.0 Pa | 98494.0 Pa | 738.766 mmHg | min/max: 98490.4/98561.5 Pa
+Air pressure: 98494.8 Pa | 98494.8 Pa | 738.771 mmHg | min/max: 98490.4/98561.5 Pa
+Air pressure: 98494.0 Pa | 98494.0 Pa | 738.766 mmHg | min/max: 98490.4/98561.5 Pa
+Air pressure: 98492.9 Pa | 98492.9 Pa | 738.758 mmHg | min/max: 98490.4/98561.5 Pa
+Air pressure: 98491.1 Pa | 98491.1 Pa | 738.744 mmHg | min/max: 98490.4/98561.5 Pa
+Air pressure: 98493.7 Pa | 98493.7 Pa | 738.763 mmHg | min/max: 98490.4/98561.5 Pa
+Air pressure: 98483.8 Pa | 98483.8 Pa | 738.689 mmHg | min/max: 98483.8/98561.5 Pa
+Air pressure: 98485.6 Pa | 98485.6 Pa | 738.703 mmHg | min/max: 98483.8/98561.5 Pa
+Air pressure: 98481.6 Pa | 98481.6 Pa | 738.672 mmHg | min/max: 98481.6/98561.5 Pa
+Air pressure: 98484.9 Pa | 98484.9 Pa | 738.697 mmHg | min/max: 98481.6/98561.5 Pa
+Air pressure: 98480.5 Pa | 98480.5 Pa | 738.664 mmHg | min/max: 98480.5/98561.5 Pa
+Air pressure: 98478.6 Pa | 98478.6 Pa | 738.650 mmHg | min/max: 98478.6/98561.5 Pa
+Air pressure: 98480.1 Pa | 98480.1 Pa | 738.661 mmHg | min/max: 98478.6/98561.5 Pa
+Air pressure: 98476.8 Pa | 98476.8 Pa | 738.636 mmHg | min/max: 98476.8/98561.5 Pa
+Air pressure: 98475.3 Pa | 98475.3 Pa | 738.625 mmHg | min/max: 98475.3/98561.5 Pa
+Air pressure: 98476.4 Pa | 98476.4 Pa | 738.634 mmHg | min/max: 98475.3/98561.5 Pa
+Air pressure: 98477.1 Pa | 98477.1 Pa | 738.639 mmHg | min/max: 98475.3/98561.5 Pa
+Air pressure: 98470.9 Pa | 98470.9 Pa | 738.592 mmHg | min/max: 98470.9/98561.5 Pa
+Air pressure: 98472.8 Pa | 98472.8 Pa | 738.606 mmHg | min/max: 98470.9/98561.5 Pa
+Air pressure: 98476.4 Pa | 98476.4 Pa | 738.634 mmHg | min/max: 98470.9/98561.5 Pa
+Air pressure: 98479.0 Pa | 98479.0 Pa | 738.653 mmHg | min/max: 98470.9/98561.5 Pa
+Air pressure: 98479.7 Pa | 98479.7 Pa | 738.659 mmHg | min/max: 98470.9/98561.5 Pa
+Air pressure: 98468.3 Pa | 98468.3 Pa | 738.573 mmHg | min/max: 98468.3/98561.5 Pa
+Air pressure: 98465.4 Pa | 98465.4 Pa | 738.551 mmHg | min/max: 98465.4/98561.5 Pa
+Air pressure: 98463.9 Pa | 98463.9 Pa | 738.540 mmHg | min/max: 98463.9/98561.5 Pa
+Air pressure: 98462.1 Pa | 98462.1 Pa | 738.526 mmHg | min/max: 98462.1/98561.5 Pa
+Air pressure: 98467.3 Pa | 98467.3 Pa | 738.565 mmHg | min/max: 98462.1/98561.5 Pa
+Air pressure: 98464.7 Pa | 98464.7 Pa | 738.546 mmHg | min/max: 98462.1/98561.5 Pa
+Air pressure: 98467.3 Pa | 98467.3 Pa | 738.565 mmHg | min/max: 98462.1/98561.5 Pa
+Air pressure: 98462.8 Pa | 98462.8 Pa | 738.532 mmHg | min/max: 98462.1/98561.5 Pa
+Air pressure: 98462.1 Pa | 98462.1 Pa | 738.526 mmHg | min/max: 98462.1/98561.5 Pa
+Air pressure: 98468.0 Pa | 98468.0 Pa | 738.570 mmHg | min/max: 98462.1/98561.5 Pa
+Air pressure: 98460.6 Pa | 98460.6 Pa | 738.515 mmHg | min/max: 98460.6/98561.5 Pa
+Air pressure: 98463.6 Pa | 98463.6 Pa | 738.537 mmHg | min/max: 98460.6/98561.5 Pa
