@@ -113,7 +113,7 @@ if __name__ == '__main__':
     # если у вас посыпались исключения EIO, то проверьте все соединения.
     # if you have EIO exceptions, then check all connections.
     res = ps.get_id()
-    print(f"chip_id: 0x{res:x}")
+    print(f"chip_id: {res}")
 
     print("Calibration data:")
     _mx = ps.get_calibration(None)
