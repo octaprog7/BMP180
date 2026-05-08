@@ -18,6 +18,9 @@ OversamplingCoeff = namedtuple("OversamplingCoeff", "temperature pressure")
 # возвращает активность каналов измерения (Истина->канал активен)
 MeasChannels = namedtuple("MeasChannels", "temperature pressure")
 MeasuredParams = namedtuple("MeasuredParams", "temperature pressure")
+# Универсальный идентификатор датчика давления
+# Неиспользуемые значения = None
+SensorID = namedtuple("SensorID","chip_id revision_id spare1 spare2")
 
 class IBMPCommon:
     """
