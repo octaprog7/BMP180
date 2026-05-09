@@ -358,3 +358,6 @@ class Bmp180(IBaseAirPresSensor):
             int: 0.
         """
         return 0
+
+    def is_data_ready(self) -> bool:
+        return self.get_data_status(raw=False)
