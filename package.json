@@ -7,6 +7,10 @@
       "bmp180.py",
       "github:octaprog7/BMP180/bmp180.py"
     ],
+[
+      "bmpXXX_test.py",
+      "github:octaprog7/BMP180/bmpXXX_test.py"
+    ],
     [
       "bmp_common.py",
       "github:octaprog7/BMP180/bmp_common.py"
