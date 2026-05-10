@@ -7,7 +7,7 @@ import array
 
 from sensor_pack_2 import bus_service
 from sensor_pack_2.base_sensor import DeviceEx, check_value
-from sensor_pack_2.bmp_common import IBaseAirPresSensor, OversamplingCoeff, MeasChannels, SensorID
+from sensor_pack_2.bmp_common import IBaseAirPresSensor, OversamplingCoeff, MeasChannels, SensorID, SensorMode
 
 # ВНИМАНИЕ: не подключайте питание датчика к 5В, иначе датчик выйдет из строя! Только 3.3В!!!
 # WARNING: do not connect "+" to 5V or the sensor will be damaged!
@@ -346,7 +346,7 @@ class Bmp180(IBaseAirPresSensor):
         Returns:
             int: 1 (всегда Forced).
         """
-        return 1
+        return SensorMode.FORCED
 
     def set_sampling_period(self, period: int | None = None) -> int:
         """BMP180 не имеет регистра ODR. Частота измерений управляется программно хостом.

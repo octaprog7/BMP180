@@ -22,6 +22,14 @@ MeasuredParams = namedtuple("MeasuredParams", "temperature pressure")
 # Неиспользуемые значения = None
 SensorID = namedtuple("SensorID","chip_id revision_id spare1 spare2")
 
+class SensorMode:
+    """режимы работы всех датчиков серии BMP"""
+    SLEEP      = 0  # Сон / Standby
+    FORCED     = 1  # Однократное измерение
+    NORMAL     = 2  # Периодическое непрерывное
+    CONTINUOUS = 3  # Непрерывное на макс. частоте (для BMP581)
+
+
 class IBMPCommon:
     """
     Унифицированный интерфейс для датчиков давления атмосферного воздуха.
